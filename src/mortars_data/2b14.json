@@ -1,0 +1,1254 @@
+{
+	"id": "2b14",
+	"name": "2B14 Podnos",
+	"faction": "USSR",
+	"caliberMm": 82,
+	"azimuthMilsPerCircle": 6000,
+	"shells": [
+		{
+			"id": "o-832du",
+			"name": "O-832DU HE",
+			"type": "HE",
+			"charges": [
+				{
+					"charge": 0,
+					"averageDispersionM": 6,
+					"minRangeM": 50,
+					"maxRangeM": 500,
+					"rows": [
+						{
+							"rangeM": 50,
+							"elevationMil": 1455,
+							"timeOfFlightS": 15,
+							"dElevPer100mDrop": 44,
+							"verified": true
+						},
+						{
+							"rangeM": 100,
+							"elevationMil": 1411,
+							"timeOfFlightS": 15,
+							"dElevPer100mDrop": 46,
+							"verified": true
+						},
+						{
+							"rangeM": 150,
+							"elevationMil": 1365,
+							"timeOfFlightS": 14.9,
+							"dElevPer100mDrop": 47,
+							"verified": true
+						},
+						{
+							"rangeM": 200,
+							"elevationMil": 1318,
+							"timeOfFlightS": 14.8,
+							"dElevPer100mDrop": 50,
+							"verified": true
+						},
+						{
+							"rangeM": 250,
+							"elevationMil": 1268,
+							"timeOfFlightS": 14.6,
+							"dElevPer100mDrop": 51,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1217,
+							"timeOfFlightS": 14.4,
+							"dElevPer100mDrop": 58,
+							"verified": true
+						},
+						{
+							"rangeM": 350,
+							"elevationMil": 1159,
+							"timeOfFlightS": 14.1,
+							"dElevPer100mDrop": 64,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1095,
+							"timeOfFlightS": 13.7,
+							"dElevPer100mDrop": 72,
+							"verified": true
+						},
+						{
+							"rangeM": 450,
+							"elevationMil": 1023,
+							"timeOfFlightS": 13.2,
+							"dElevPer100mDrop": 101,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 922,
+							"timeOfFlightS": 12.4,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 1,
+					"averageDispersionM": 12,
+					"minRangeM": 100,
+					"maxRangeM": 800,
+					"rows": [
+						{
+							"rangeM": 100,
+							"elevationMil": 1446,
+							"timeOfFlightS": 19.5,
+							"dElevPer100mDrop": 27,
+							"verified": true
+						},
+						{
+							"rangeM": 200,
+							"elevationMil": 1392,
+							"timeOfFlightS": 19.4,
+							"dElevPer100mDrop": 28,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1335,
+							"timeOfFlightS": 19.2,
+							"dElevPer100mDrop": 29,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1275,
+							"timeOfFlightS": 18.9,
+							"dElevPer100mDrop": 31,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1212,
+							"timeOfFlightS": 18.6,
+							"dElevPer100mDrop": 35,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1141,
+							"timeOfFlightS": 18.1,
+							"dElevPer100mDrop": 40,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1058,
+							"timeOfFlightS": 17.4,
+							"dElevPer100mDrop": 48,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 952,
+							"timeOfFlightS": 16.4,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 2,
+					"averageDispersionM": 19,
+					"minRangeM": 200,
+					"maxRangeM": 1400,
+					"rows": [
+						{
+							"rangeM": 200,
+							"elevationMil": 1432,
+							"timeOfFlightS": 24.8,
+							"dElevPer100mDrop": 17,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1397,
+							"timeOfFlightS": 24.7,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1362,
+							"timeOfFlightS": 24.6,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1325,
+							"timeOfFlightS": 24.4,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1288,
+							"timeOfFlightS": 24.2,
+							"dElevPer100mDrop": 20,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1248,
+							"timeOfFlightS": 24,
+							"dElevPer100mDrop": 20,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1207,
+							"timeOfFlightS": 23.7,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1162,
+							"timeOfFlightS": 23.3,
+							"dElevPer100mDrop": 23,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1114,
+							"timeOfFlightS": 22.9,
+							"dElevPer100mDrop": 26,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1060,
+							"timeOfFlightS": 22.3,
+							"dElevPer100mDrop": 29,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 997,
+							"timeOfFlightS": 21.5,
+							"dElevPer100mDrop": 37,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 914,
+							"timeOfFlightS": 20.4,
+							"dElevPer100mDrop": 55,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 755,
+							"timeOfFlightS": 17.8,
+							"dElevPer100mDrop": null,
+							"verified": false
+						}
+					]
+				},
+				{
+					"charge": 3,
+					"averageDispersionM": 29,
+					"minRangeM": 300,
+					"maxRangeM": 1800,
+					"rows": [
+						{
+							"rangeM": 300,
+							"elevationMil": 1423,
+							"timeOfFlightS": 28.9,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1397,
+							"timeOfFlightS": 28.9,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1370,
+							"timeOfFlightS": 28.8,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1343,
+							"timeOfFlightS": 28.6,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1315,
+							"timeOfFlightS": 28.5,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1286,
+							"timeOfFlightS": 28.3,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1257,
+							"timeOfFlightS": 28.1,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1226,
+							"timeOfFlightS": 27.9,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1193,
+							"timeOfFlightS": 27.6,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 1159,
+							"timeOfFlightS": 27.2,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 1123,
+							"timeOfFlightS": 26.8,
+							"dElevPer100mDrop": 19,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 1084,
+							"timeOfFlightS": 26.4,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 1500,
+							"elevationMil": 1040,
+							"timeOfFlightS": 25.8,
+							"dElevPer100mDrop": 24,
+							"verified": true
+						},
+						{
+							"rangeM": 1600,
+							"elevationMil": 991,
+							"timeOfFlightS": 25.1,
+							"dElevPer100mDrop": 28,
+							"verified": true
+						},
+						{
+							"rangeM": 1700,
+							"elevationMil": 932,
+							"timeOfFlightS": 24.2,
+							"dElevPer100mDrop": 36,
+							"verified": true
+						},
+						{
+							"rangeM": 1800,
+							"elevationMil": 851,
+							"timeOfFlightS": 22.8,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 4,
+					"averageDispersionM": 34,
+					"minRangeM": 400,
+					"maxRangeM": 2300,
+					"rows": [
+						{
+							"rangeM": 400,
+							"elevationMil": 1418,
+							"timeOfFlightS": 32.9,
+							"dElevPer100mDrop": 10,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1398,
+							"timeOfFlightS": 32.9,
+							"dElevPer100mDrop": 11,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1376,
+							"timeOfFlightS": 32.8,
+							"dElevPer100mDrop": 10,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1355,
+							"timeOfFlightS": 32.7,
+							"dElevPer100mDrop": 11,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1333,
+							"timeOfFlightS": 32.6,
+							"dElevPer100mDrop": 11,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1311,
+							"timeOfFlightS": 32.4,
+							"dElevPer100mDrop": 12,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1288,
+							"timeOfFlightS": 32.2,
+							"dElevPer100mDrop": 12,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1264,
+							"timeOfFlightS": 32.1,
+							"dElevPer100mDrop": 12,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 1240,
+							"timeOfFlightS": 31.8,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 1215,
+							"timeOfFlightS": 31.6,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 1189,
+							"timeOfFlightS": 31.3,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 1500,
+							"elevationMil": 1161,
+							"timeOfFlightS": 31,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 1600,
+							"elevationMil": 1133,
+							"timeOfFlightS": 30.7,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 1700,
+							"elevationMil": 1102,
+							"timeOfFlightS": 30.3,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 1800,
+							"elevationMil": 1069,
+							"timeOfFlightS": 29.8,
+							"dElevPer100mDrop": 17,
+							"verified": true
+						},
+						{
+							"rangeM": 1900,
+							"elevationMil": 1034,
+							"timeOfFlightS": 29.3,
+							"dElevPer100mDrop": 19,
+							"verified": true
+						},
+						{
+							"rangeM": 2000,
+							"elevationMil": 995,
+							"timeOfFlightS": 28.7,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 2100,
+							"elevationMil": 950,
+							"timeOfFlightS": 27.9,
+							"dElevPer100mDrop": 26,
+							"verified": true
+						},
+						{
+							"rangeM": 2200,
+							"elevationMil": 896,
+							"timeOfFlightS": 26.9,
+							"dElevPer100mDrop": 34,
+							"verified": true
+						},
+						{
+							"rangeM": 2300,
+							"elevationMil": 820,
+							"timeOfFlightS": 25.3,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "d-832du",
+			"name": "D-832DU Smoke",
+			"type": "SMOKE",
+			"charges": [
+				{
+					"charge": 0,
+					"averageDispersionM": 6,
+					"minRangeM": 50,
+					"maxRangeM": 450,
+					"rows": [
+						{
+							"rangeM": 50,
+							"elevationMil": 1450,
+							"timeOfFlightS": 14.1,
+							"dElevPer100mDrop": 51,
+							"verified": true
+						},
+						{
+							"rangeM": 100,
+							"elevationMil": 1399,
+							"timeOfFlightS": 14,
+							"dElevPer100mDrop": 52,
+							"verified": true
+						},
+						{
+							"rangeM": 150,
+							"elevationMil": 1347,
+							"timeOfFlightS": 13.9,
+							"dElevPer100mDrop": 55,
+							"verified": true
+						},
+						{
+							"rangeM": 200,
+							"elevationMil": 1292,
+							"timeOfFlightS": 13.8,
+							"dElevPer100mDrop": 57,
+							"verified": true
+						},
+						{
+							"rangeM": 250,
+							"elevationMil": 1235,
+							"timeOfFlightS": 13.6,
+							"dElevPer100mDrop": 63,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1172,
+							"timeOfFlightS": 13.3,
+							"dElevPer100mDrop": 70,
+							"verified": true
+						},
+						{
+							"rangeM": 350,
+							"elevationMil": 1102,
+							"timeOfFlightS": 12.9,
+							"dElevPer100mDrop": 82,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1020,
+							"timeOfFlightS": 12.4,
+							"dElevPer100mDrop": 122,
+							"verified": true
+						},
+						{
+							"rangeM": 450,
+							"elevationMil": 898,
+							"timeOfFlightS": 11.4,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 1,
+					"averageDispersionM": 12,
+					"minRangeM": 200,
+					"maxRangeM": 800,
+					"rows": [
+						{
+							"rangeM": 200,
+							"elevationMil": 1381,
+							"timeOfFlightS": 18.4,
+							"dElevPer100mDrop": 31,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1319,
+							"timeOfFlightS": 18.2,
+							"dElevPer100mDrop": 33,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1252,
+							"timeOfFlightS": 17.9,
+							"dElevPer100mDrop": 34,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1179,
+							"timeOfFlightS": 17.5,
+							"dElevPer100mDrop": 38,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1097,
+							"timeOfFlightS": 16.9,
+							"dElevPer100mDrop": 47,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 993,
+							"timeOfFlightS": 16,
+							"dElevPer100mDrop": 67,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 805,
+							"timeOfFlightS": 13.9,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 2,
+					"averageDispersionM": 18,
+					"minRangeM": 300,
+					"maxRangeM": 1200,
+					"rows": [
+						{
+							"rangeM": 300,
+							"elevationMil": 1387,
+							"timeOfFlightS": 23.5,
+							"dElevPer100mDrop": 19,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1348,
+							"timeOfFlightS": 23.3,
+							"dElevPer100mDrop": 20,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1308,
+							"timeOfFlightS": 23.2,
+							"dElevPer100mDrop": 21,
+							"verified": false
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1266,
+							"timeOfFlightS": 22.9,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1222,
+							"timeOfFlightS": 22.7,
+							"dElevPer100mDrop": 24,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1175,
+							"timeOfFlightS": 22.3,
+							"dElevPer100mDrop": 26,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1123,
+							"timeOfFlightS": 21.8,
+							"dElevPer100mDrop": 28,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1065,
+							"timeOfFlightS": 21.3,
+							"dElevPer100mDrop": 32,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 994,
+							"timeOfFlightS": 20.4,
+							"dElevPer100mDrop": 40,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 902,
+							"timeOfFlightS": 19.2,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 3,
+					"averageDispersionM": 27,
+					"minRangeM": 400,
+					"maxRangeM": 1600,
+					"rows": [
+						{
+							"rangeM": 400,
+							"elevationMil": 1387,
+							"timeOfFlightS": 27.3,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1357,
+							"timeOfFlightS": 27.2,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1327,
+							"timeOfFlightS": 27.1,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1296,
+							"timeOfFlightS": 26.9,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1264,
+							"timeOfFlightS": 26.7,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1231,
+							"timeOfFlightS": 26.5,
+							"dElevPer100mDrop": 17,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1196,
+							"timeOfFlightS": 26.2,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1159,
+							"timeOfFlightS": 25.8,
+							"dElevPer100mDrop": 20,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 1119,
+							"timeOfFlightS": 25.4,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 1075,
+							"timeOfFlightS": 24.9,
+							"dElevPer100mDrop": 24,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 1026,
+							"timeOfFlightS": 24.3,
+							"dElevPer100mDrop": 27,
+							"verified": true
+						},
+						{
+							"rangeM": 1500,
+							"elevationMil": 969,
+							"timeOfFlightS": 23.5,
+							"dElevPer100mDrop": 33,
+							"verified": true
+						},
+						{
+							"rangeM": 1600,
+							"elevationMil": 896,
+							"timeOfFlightS": 22.3,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "s-832s",
+			"name": "S-832S Illumination",
+			"type": "ILLUMINATION",
+			"charges": [
+				{
+					"charge": 1,
+					"averageDispersionM": 9,
+					"minRangeM": 100,
+					"maxRangeM": 600,
+					"rows": [
+						{
+							"rangeM": 100,
+							"elevationMil": 1421,
+							"timeOfFlightS": 16.4,
+							"dElevPer100mDrop": 40,
+							"verified": true
+						},
+						{
+							"rangeM": 150,
+							"elevationMil": 1381,
+							"timeOfFlightS": 16.3,
+							"dElevPer100mDrop": 42,
+							"verified": true
+						},
+						{
+							"rangeM": 200,
+							"elevationMil": 1339,
+							"timeOfFlightS": 16.2,
+							"dElevPer100mDrop": 43,
+							"verified": true
+						},
+						{
+							"rangeM": 250,
+							"elevationMil": 1296,
+							"timeOfFlightS": 16.1,
+							"dElevPer100mDrop": 45,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1251,
+							"timeOfFlightS": 15.9,
+							"dElevPer100mDrop": 48,
+							"verified": true
+						},
+						{
+							"rangeM": 350,
+							"elevationMil": 1203,
+							"timeOfFlightS": 15.7,
+							"dElevPer100mDrop": 52,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1151,
+							"timeOfFlightS": 15.4,
+							"dElevPer100mDrop": 58,
+							"verified": true
+						},
+						{
+							"rangeM": 450,
+							"elevationMil": 1093,
+							"timeOfFlightS": 15,
+							"dElevPer100mDrop": 65,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1028,
+							"timeOfFlightS": 14.5,
+							"dElevPer100mDrop": 83,
+							"verified": true
+						},
+						{
+							"rangeM": 550,
+							"elevationMil": 945,
+							"timeOfFlightS": 13.8,
+							"dElevPer100mDrop": 146,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 799,
+							"timeOfFlightS": 12.3,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 2,
+					"averageDispersionM": 17,
+					"minRangeM": 200,
+					"maxRangeM": 1100,
+					"rows": [
+						{
+							"rangeM": 200,
+							"elevationMil": 1417,
+							"timeOfFlightS": 23.6,
+							"dElevPer100mDrop": 21,
+							"verified": true
+						},
+						{
+							"rangeM": 300,
+							"elevationMil": 1374,
+							"timeOfFlightS": 23.5,
+							"dElevPer100mDrop": 22,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1330,
+							"timeOfFlightS": 23.3,
+							"dElevPer100mDrop": 23,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1284,
+							"timeOfFlightS": 23.1,
+							"dElevPer100mDrop": 24,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1234,
+							"timeOfFlightS": 22.8,
+							"dElevPer100mDrop": 25,
+							"verified": true
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1182,
+							"timeOfFlightS": 22.4,
+							"dElevPer100mDrop": 29,
+							"verified": true
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1124,
+							"timeOfFlightS": 21.9,
+							"dElevPer100mDrop": 32,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1057,
+							"timeOfFlightS": 21.3,
+							"dElevPer100mDrop": 36,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 979,
+							"timeOfFlightS": 20.4,
+							"dElevPer100mDrop": 48,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 870,
+							"timeOfFlightS": 18.9,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 3,
+					"averageDispersionM": 24,
+					"minRangeM": 300,
+					"maxRangeM": 1600,
+					"rows": [
+						{
+							"rangeM": 300,
+							"elevationMil": 1411,
+							"timeOfFlightS": 29,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 400,
+							"elevationMil": 1380,
+							"timeOfFlightS": 28.9,
+							"dElevPer100mDrop": 16,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1348,
+							"timeOfFlightS": 28.7,
+							"dElevPer100mDrop": 16,
+							"verified": false
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1315,
+							"timeOfFlightS": 28.6,
+							"dElevPer100mDrop": 16,
+							"verified": false
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1281,
+							"timeOfFlightS": 28.4,
+							"dElevPer100mDrop": 17,
+							"verified": false
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1246,
+							"timeOfFlightS": 28.1,
+							"dElevPer100mDrop": 18,
+							"verified": false
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1209,
+							"timeOfFlightS": 27.8,
+							"dElevPer100mDrop": 19,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1170,
+							"timeOfFlightS": 27.4,
+							"dElevPer100mDrop": 21,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1128,
+							"timeOfFlightS": 27,
+							"dElevPer100mDrop": 23,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 1082,
+							"timeOfFlightS": 26.5,
+							"dElevPer100mDrop": 25,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 1031,
+							"timeOfFlightS": 25.8,
+							"dElevPer100mDrop": 28,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 973,
+							"timeOfFlightS": 25,
+							"dElevPer100mDrop": 33,
+							"verified": true
+						},
+						{
+							"rangeM": 1500,
+							"elevationMil": 903,
+							"timeOfFlightS": 23.9,
+							"dElevPer100mDrop": 43,
+							"verified": true
+						},
+						{
+							"rangeM": 1600,
+							"elevationMil": 807,
+							"timeOfFlightS": 22.3,
+							"dElevPer100mDrop": null,
+							"verified": true
+						}
+					]
+				},
+				{
+					"charge": 4,
+					"averageDispersionM": 34,
+					"minRangeM": 400,
+					"maxRangeM": 2200,
+					"rows": [
+						{
+							"rangeM": 400,
+							"elevationMil": 1411,
+							"timeOfFlightS": 35.3,
+							"dElevPer100mDrop": 12,
+							"verified": true
+						},
+						{
+							"rangeM": 500,
+							"elevationMil": 1388,
+							"timeOfFlightS": 35.2,
+							"dElevPer100mDrop": 12,
+							"verified": true
+						},
+						{
+							"rangeM": 600,
+							"elevationMil": 1364,
+							"timeOfFlightS": 35.1,
+							"dElevPer100mDrop": 11,
+							"verified": false
+						},
+						{
+							"rangeM": 700,
+							"elevationMil": 1341,
+							"timeOfFlightS": 35,
+							"dElevPer100mDrop": 13,
+							"verified": false
+						},
+						{
+							"rangeM": 800,
+							"elevationMil": 1316,
+							"timeOfFlightS": 34.8,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 900,
+							"elevationMil": 1291,
+							"timeOfFlightS": 34.7,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 1000,
+							"elevationMil": 1265,
+							"timeOfFlightS": 34.4,
+							"dElevPer100mDrop": 13,
+							"verified": true
+						},
+						{
+							"rangeM": 1100,
+							"elevationMil": 1238,
+							"timeOfFlightS": 34.2,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 1200,
+							"elevationMil": 1210,
+							"timeOfFlightS": 33.9,
+							"dElevPer100mDrop": 14,
+							"verified": true
+						},
+						{
+							"rangeM": 1300,
+							"elevationMil": 1181,
+							"timeOfFlightS": 33.6,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 1400,
+							"elevationMil": 1150,
+							"timeOfFlightS": 33.2,
+							"dElevPer100mDrop": 15,
+							"verified": true
+						},
+						{
+							"rangeM": 1500,
+							"elevationMil": 1119,
+							"timeOfFlightS": 32.8,
+							"dElevPer100mDrop": 17,
+							"verified": true
+						},
+						{
+							"rangeM": 1600,
+							"elevationMil": 1085,
+							"timeOfFlightS": 32.4,
+							"dElevPer100mDrop": 18,
+							"verified": true
+						},
+						{
+							"rangeM": 1700,
+							"elevationMil": 1048,
+							"timeOfFlightS": 31.8,
+							"dElevPer100mDrop": 19,
+							"verified": true
+						},
+						{
+							"rangeM": 1800,
+							"elevationMil": 1009,
+							"timeOfFlightS": 31.2,
+							"dElevPer100mDrop": 21,
+							"verified": true
+						},
+						{
+							"rangeM": 1900,
+							"elevationMil": 965,
+							"timeOfFlightS": 30.4,
+							"dElevPer100mDrop": 23,
+							"verified": true
+						},
+						{
+							"rangeM": 2000,
+							"elevationMil": 917,
+							"timeOfFlightS": 29.6,
+							"dElevPer100mDrop": 27,
+							"verified": true
+						},
+						{
+							"rangeM": 2100,
+							"elevationMil": 860,
+							"timeOfFlightS": 28.4,
+							"dElevPer100mDrop": 34,
+							"verified": false
+						},
+						{
+							"rangeM": 2200,
+							"elevationMil": 787,
+							"timeOfFlightS": 26.9,
+							"dElevPer100mDrop": null,
+							"verified": false
+						}
+					]
+				}
+			]
+		}
+	]
+}
