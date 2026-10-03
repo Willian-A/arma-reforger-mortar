@@ -9,12 +9,12 @@ function calculateDistance({
 	start,
 	end,
 }: {
-	start: { x: string; y: string };
-	end: { x: string; y: string };
+	start: { x: number; y: number };
+	end: { x: number; y: number };
 }): number {
-	const dx = parseInt(end.x, 10) - parseInt(start.x, 10);
-	const dy = parseInt(end.y, 10) - parseInt(start.y, 10);
-	const distance = Math.sqrt(dx * dx + dy * dy).toFixed(2);
+	const dx = (end.x - start.x) * 100; // convert to meters
+	const dy = (end.y - start.y) * 100; // convert to meters
+	const distance = Math.sqrt(dx * dx + dy * dy).toFixed(0);
 
 	return Number(distance);
 }
@@ -22,22 +22,22 @@ function calculateDistance({
 function calculateAzimuthMils({
 	start,
 	end,
-	faction,
+	mortar,
 }: {
-	start: { x: string; y: string };
-	end: { x: string; y: string };
-	faction: "US" | "URSS";
+	start: { x: number; y: number };
+	end: { x: number; y: number };
+	mortar: "M252" | "2B14";
 }): number {
-	const milsPerCircle = faction === "US" ? 6400 : 6000;
+	const milsPerCircle = mortar === "M252" ? 6400 : 6000;
 
-	const dx = Number(end.x) - Number(start.x);
-	const dy = Number(end.y) - Number(start.y);
+	const dx = end.x - start.x;
+	const dy = end.y - start.y;
 
 	const radians = Math.atan2(dx, dy);
 
 	const normalized = (radians + 2 * Math.PI) % (2 * Math.PI);
 
-	return (normalized / (2 * Math.PI)) * milsPerCircle;
+	return Number(((normalized / (2 * Math.PI)) * milsPerCircle).toFixed(0));
 }
 
 export { calculateAzimuthMils, calculateDistance, calculatePrecision };
