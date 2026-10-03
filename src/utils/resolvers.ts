@@ -2,7 +2,6 @@ import _2B14 from "../mortars_data/2b14.json";
 import M252 from "../mortars_data/m252.json";
 import {
 	type BallisticRow,
-	type Charge,
 	type Mortar,
 	MortarSchema,
 } from "../mortars_data/mortars.schema";
@@ -20,6 +19,15 @@ type FiringMortarData = {
 	shell_type: ShellType;
 };
 
+export type ResolvedFiringMortarData = {
+	rings: number;
+	distance: number;
+	elevation: number;
+	azimuth: number;
+	timeOfFlight: number;
+	altitudeCorrection: number;
+};
+
 const MORTARS = {
 	M252: MortarSchema.parse(M252),
 	"2B14": MortarSchema.parse(_2B14),
@@ -29,12 +37,16 @@ function resolveShellCharges(
 	mortarData: Mortar,
 	shell_type: ShellType,
 	distance: number,
-): [number | undefined, BallisticRow[] | undefined] {
+): [number, BallisticRow[]] {
 	const shell = mortarData.shells.find((shell) => shell.type === shell_type);
-	const charge = shell?.charges.find(
+	if (!shell) throw new Error(`No mortar shell found for ${shell_type}`);
+
+	const charge = shell.charges.find(
 		(charge) => charge.minRangeM <= distance && distance <= charge.maxRangeM,
 	);
-	return [charge?.charge, charge?.rows];
+	if (!charge) throw new Error(`No mortar shell charge for ${distance}m range`);
+
+	return [charge.charge, charge.rows];
 }
 
 function lerp(a: number, b: number, t: number): number {
@@ -78,7 +90,7 @@ function resolveFiringMortarData({
 	mortar,
 	positions,
 	shell_type,
-}: FiringMortarData) {
+}: FiringMortarData): ResolvedFiringMortarData {
 	const mortarData = MORTARS[mortar];
 	const { start, end } = positions;
 
