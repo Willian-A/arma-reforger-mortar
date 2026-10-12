@@ -12,9 +12,11 @@ describe("resolveFiringMortarData", () => {
 			altitudeCorrection,
 		} = resolveFiringMortarData({
 			mortar: "2B14",
-			positions: {
-				start: { x: 50, y: 50, z: 100 },
-				end: { x: 65, y: 50, z: 50 },
+			coords: {
+				start: "050 050",
+				startZ: "100",
+				end: "065 050",
+				endZ: "50",
 			},
 			shell_type: "HE",
 		});
@@ -37,9 +39,11 @@ describe("resolveFiringMortarData", () => {
 			altitudeCorrection,
 		} = resolveFiringMortarData({
 			mortar: "M252",
-			positions: {
-				start: { x: 50, y: 50, z: 100 },
-				end: { x: 65, y: 50, z: 50 },
+			coords: {
+				start: "050 050",
+				startZ: "100",
+				end: "065 050",
+				endZ: "50",
 			},
 			shell_type: "HE",
 		});

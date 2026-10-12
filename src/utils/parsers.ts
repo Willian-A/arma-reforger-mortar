@@ -12,7 +12,7 @@ function centerCoords(xMeters: string, yMeters: string): string[] {
 	return [centerX, centerY];
 }
 
-function parseCoords(coords: string): string[] {
+function parseCoords(coords: string, height: string): string[] {
 	const formattedCoords = coords.trim().replaceAll(" ", "");
 
 	if (formattedCoords.length !== 6) {
@@ -28,7 +28,9 @@ function parseCoords(coords: string): string[] {
 		throw new Error("Coords must be positive");
 	}
 
-	return [X, Y];
+	const Z = height.trim().replaceAll(" ", "");
+
+	return [X, Y, Z];
 }
 
 export { centerCoords, gridToMeters, parseCoords };

@@ -1,13 +1,16 @@
 import { create, type ExtractState } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { ShellType } from "../mortars_data/mortars.schema";
+import type { GunType, ShellType } from "../mortars_data/mortars.schema";
 import type { ResolvedFiringMortarData } from "../utils/resolvers";
 
-type Position = { x: number; y: number; z: number };
-
 export type MortarResolution = {
-	weapon: { name: string; shell: ShellType };
-	coords: { start: Position; end: Position };
+	weapon: { name: GunType; shell: ShellType };
+	coords: {
+		start: string;
+		startHeight: string | undefined;
+		end: string;
+		endHeight: string | undefined;
+	};
 	resolution: ResolvedFiringMortarData;
 };
 

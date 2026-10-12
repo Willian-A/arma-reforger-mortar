@@ -1,1 +1,8 @@
 @import "tailwindcss";
+@import "@heroui/styles";
+
+@layer base {
+    html {
+        @apply bg-[#060607];
+    }
+}

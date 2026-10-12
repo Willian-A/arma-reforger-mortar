@@ -1,5 +1,138 @@
+import { Button, Card, Form } from "@heroui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useStore } from "zustand";
+
+import {
+	type ResolveMortarFormData,
+	resolveMortarFormSchema,
+} from "./components/ResolveMortarForm/ResolveMortarForm.schema";
+import { StepOne } from "./components/ResolveMortarForm/StepOne";
+import { StepTwo } from "./components/ResolveMortarForm/StepTwo";
+import { useResolvedMortarData } from "./stores/resolved_mortar.store";
+import { resolveFiringMortarData } from "./utils/resolvers";
+
+const STEP_DESCRIPTION = [
+	"Select weapon and shell type to be used for the firing resolution.",
+	"Enter the coordinates and altitude for the weapon and target.",
+];
+
 function App() {
-	return <h1>Home</h1>;
+	const cachedData = useStore(useResolvedMortarData);
+	const [step, setStep] = useState(cachedData.mortarResolution ? 1 : 0);
+
+	function handleDefaultValues() {
+		if (cachedData.mortarResolution) {
+			return {
+				mortarGun: cachedData.mortarResolution.weapon.name,
+				shellType: cachedData.mortarResolution.weapon.shell,
+				start: cachedData.mortarResolution.coords.start,
+				startHeight: cachedData.mortarResolution.coords.startHeight,
+				end: cachedData.mortarResolution.coords.end,
+				endHeight: cachedData.mortarResolution.coords.endHeight,
+			};
+		}
+
+		return undefined;
+	}
+
+	const methods = useForm<ResolveMortarFormData>({
+		resolver: zodResolver(resolveMortarFormSchema),
+		reValidateMode: "onChange",
+		defaultValues: handleDefaultValues(),
+	});
+
+	const onSubmit = (data: ResolveMortarFormData) => {
+		const resolvedMortarSolution = resolveFiringMortarData({
+			mortar: data.mortarGun,
+			coords: {
+				start: data.start,
+				end: data.end,
+				startZ: String(data.startHeight),
+				endZ: String(data.endHeight),
+			},
+			shell_type: data.shellType,
+		});
+
+		cachedData.updateResolution({
+			weapon: { name: data.mortarGun, shell: data.shellType },
+			coords: {
+				start: data.start,
+				startHeight: data.startHeight,
+				end: data.end,
+				endHeight: data.endHeight,
+			},
+			resolution: resolvedMortarSolution,
+		});
+	};
+
+	const handleNextStep = () => {
+		const isUsingSameGun =
+			cachedData.mortarResolution?.weapon.name !==
+			methods.getValues("mortarGun");
+		const isUsingSameShellType =
+			cachedData.mortarResolution?.weapon.shell !==
+			methods.getValues("shellType");
+
+		if (isUsingSameGun || isUsingSameShellType) {
+			cachedData.clearResolution();
+			methods.resetDefaultValues({});
+			methods.resetField("end");
+			methods.resetField("endHeight");
+			methods.resetField("start");
+			methods.resetField("startHeight");
+		}
+
+		setStep(1);
+	};
+
+	return (
+		<section className="relative w-full h-screen">
+			<FormProvider {...methods}>
+				<Form onSubmit={methods.handleSubmit(onSubmit)}>
+					<Card className="w-full max-w-xs absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 gap-6">
+						<Card.Header className="gap-2">
+							<Card.Title className="text-lg">
+								Mortar Firing Resolution
+							</Card.Title>
+							<Card.Description>{STEP_DESCRIPTION[step]}</Card.Description>
+						</Card.Header>
+						<Card.Content>
+							{step === 0 && <StepOne />}
+							{step === 1 && <StepTwo />}
+						</Card.Content>
+						<Card.Footer className="mt-4 flex flex-col gap-2">
+							{step === 0 && (
+								<Button
+									className="w-full"
+									type="button"
+									onClick={handleNextStep}
+								>
+									Next
+								</Button>
+							)}
+							{step === 1 && (
+								<div className="w-full flex gap-2">
+									<Button
+										className="w-1/2"
+										type="button"
+										variant="outline"
+										onClick={() => setStep(0)}
+									>
+										Back
+									</Button>
+									<Button className="w-full" type="submit">
+										Calculate
+									</Button>
+								</div>
+							)}
+						</Card.Footer>
+					</Card>
+				</Form>
+			</FormProvider>
+		</section>
+	);
 }
 
 export default App;

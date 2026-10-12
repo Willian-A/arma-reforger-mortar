@@ -2,20 +2,17 @@ import _2B14 from "../mortars_data/2b14.json";
 import M252 from "../mortars_data/m252.json";
 import {
 	type BallisticRow,
+	type GunType,
 	type Mortar,
 	MortarSchema,
+	type ShellType,
 } from "../mortars_data/mortars.schema";
 import { calculateAzimuthMils, calculateDistance } from "./calculators";
-
-type ShellType = "HE" | "SMOKE" | "ILLUMINATION";
-type MortarType = "2B14" | "M252";
+import { parseCoords } from "./parsers";
 
 type FiringMortarData = {
-	mortar: MortarType;
-	positions: {
-		start: { x: number; y: number; z: number };
-		end: { x: number; y: number; z: number };
-	};
+	mortar: GunType;
+	coords: { start: string; startZ: string; end: string; endZ: string };
 	shell_type: ShellType;
 };
 
@@ -88,15 +85,16 @@ function interpolateRow(rows: BallisticRow[], distance: number) {
 
 function resolveFiringMortarData({
 	mortar,
-	positions,
+	coords,
 	shell_type,
 }: FiringMortarData): ResolvedFiringMortarData {
 	const mortarData = MORTARS[mortar];
-	const { start, end } = positions;
+	const [startX, startY, startZ] = parseCoords(coords.start, coords.startZ);
+	const [endX, endY, endZ] = parseCoords(coords.end, coords.endZ);
 
 	const distance = calculateDistance({
-		start: start,
-		end: end,
+		start: { x: Number(startX), y: Number(startY) },
+		end: { x: Number(endX), y: Number(endY) },
 	});
 
 	const [rings, rows] = resolveShellCharges(mortarData, shell_type, distance);
@@ -108,12 +106,16 @@ function resolveFiringMortarData({
 
 	const solution = interpolateRow(rows, distance);
 
-	const altitudeDiff = (start.z ?? 0) - (end.z ?? 0); // positive = target is lower
+	const altitudeDiff = (Number(startZ) ?? 0) - (Number(endZ) ?? 0); // positive = target is lower
 	const altitudeCorrection =
 		(altitudeDiff / 100) * (solution.dElevPer100mDrop ?? 0);
 	const elevation = solution.elevationMil + altitudeCorrection;
 
-	const azimuth = calculateAzimuthMils({ start, end, mortar });
+	const azimuth = calculateAzimuthMils({
+		start: { x: Number(startX), y: Number(startY) },
+		end: { x: Number(endX), y: Number(endY) },
+		mortar,
+	});
 
 	return {
 		rings,
