@@ -13,12 +13,16 @@ export const weaponStepSchema = z.object({
 });
 
 export const coordsStepSchema = z.object({
-	start: z.string().regex(GRID_COORDS_REGEX, "Use 6 digits, e.g. 052 097"),
+	start: z
+		.string("Required field")
+		.regex(GRID_COORDS_REGEX, "Use 6 digits, e.g. 052 097"),
 	startHeight: z
 		.string()
 		.regex(ALTITUDE_REGEX, "Use up to 4 digits")
 		.optional(),
-	end: z.string().regex(GRID_COORDS_REGEX, "Use 6 digits, e.g. 052 097"),
+	end: z
+		.string("Required field")
+		.regex(GRID_COORDS_REGEX, "Use 6 digits, e.g. 052 097"),
 	endHeight: z
 		.string()
 		.regex(ALTITUDE_REGEX, "Altitude must be a number under 9999")

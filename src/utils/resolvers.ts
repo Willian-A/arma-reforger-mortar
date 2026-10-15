@@ -1,3 +1,4 @@
+import { toast } from "@heroui/react";
 import _2B14 from "../mortars_data/2b14.json";
 import M252 from "../mortars_data/m252.json";
 import {
@@ -41,7 +42,14 @@ function resolveShellCharges(
 	const charge = shell.charges.find(
 		(charge) => charge.minRangeM <= distance && distance <= charge.maxRangeM,
 	);
-	if (!charge) throw new Error(`No mortar shell charge for ${distance}m range`);
+	if (!charge) {
+		toast("No mortar shell found", {
+			description: `No mortar shell charge for ${distance}m range`,
+			variant: "warning",
+			timeout: 5000,
+		});
+		throw new Error(`No mortar shell charge for ${distance}m range`);
+	}
 
 	return [charge.charge, charge.rows];
 }
@@ -55,6 +63,11 @@ function interpolateRow(rows: BallisticRow[], distance: number) {
 	const last = rows[rows.length - 1];
 
 	if (distance < first.rangeM || distance > last.rangeM) {
+		toast("Out of charge range", {
+			description: "Distance out of range for this charge",
+			variant: "warning",
+			timeout: 5000,
+		});
 		throw new Error("Distance out of range for this charge");
 	}
 
@@ -99,14 +112,18 @@ function resolveFiringMortarData({
 
 	const [rings, rows] = resolveShellCharges(mortarData, shell_type, distance);
 	if (!rows) {
+		toast("Out of firing range", {
+			description: `No charge reaches ${Math.round(distance)}m with ${shell_type}`,
+			variant: "warning",
+			timeout: 5000,
+		});
 		throw new Error(
 			`No charge reaches ${Math.round(distance)}m with ${shell_type}`,
 		);
 	}
 
 	const solution = interpolateRow(rows, distance);
-
-	const altitudeDiff = (Number(startZ) ?? 0) - (Number(endZ) ?? 0); // positive = target is lower
+	const altitudeDiff = (Number(startZ) || 0) - (Number(endZ) || 0); // positive = target is lower
 	const altitudeCorrection =
 		(altitudeDiff / 100) * (solution.dElevPer100mDrop ?? 0);
 	const elevation = solution.elevationMil + altitudeCorrection;
