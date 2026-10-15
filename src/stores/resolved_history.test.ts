@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
-import type { MortarResolution } from "./resolved_mortar.store";
+import type { GunType, ShellType } from "../mortars_data/mortars.schema";
 import { useResolvedHistory } from "./resolved_history.store";
+import type { MortarResolution } from "./resolved_mortar.store";
 
 const STORAGE_KEY = "resolved-solution-history";
 
@@ -59,7 +60,10 @@ describe("useResolvedHistory", () => {
 
 	it("appends new items keeping previous ones", () => {
 		const { addToHistory } = useResolvedHistory.getState();
-		const newer = { ...mockResolution, weapon: { name: "2B14", shell: "SMOKE" } };
+		const newer = {
+			...mockResolution,
+			weapon: { name: "2B14" as GunType, shell: "SMOKE" as ShellType },
+		};
 
 		addToHistory(mockResolution);
 		addToHistory(newer);
@@ -85,7 +89,10 @@ describe("useResolvedHistory", () => {
 		const { addToHistory, removeFromHistory } = useResolvedHistory.getState();
 
 		addToHistory(mockResolution);
-		addToHistory({ ...mockResolution, weapon: { name: "2B14", shell: "SMOKE" } });
+		addToHistory({
+			...mockResolution,
+			weapon: { name: "2B14", shell: "SMOKE" },
+		});
 		const [first, second] = useResolvedHistory.getState().history;
 
 		removeFromHistory(first.id);
