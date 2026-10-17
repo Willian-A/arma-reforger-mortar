@@ -1,36 +1,31 @@
 import { Button, Card, Chip, ScrollShadow } from "@heroui/react";
 import { CrosshairSimpleIcon, TrashSimpleIcon } from "@phosphor-icons/react";
 
-import type {
-	HistoryItem,
-	HistoryState,
-} from "../stores/history.store";
+import { type HistoryItem, useHistoryStore } from "../stores/history.store";
 
 interface ResultsHistoryCardProps {
-	resultsHistory: HistoryState;
 	onRestore: (historyData: HistoryItem) => void;
 }
 
-export function ResultsHistoryCard({
-	resultsHistory,
-	onRestore,
-}: ResultsHistoryCardProps) {
+export function ResultsHistoryCard({ onRestore }: ResultsHistoryCardProps) {
+	const history = useHistoryStore((state) => state.history);
+	const remove = useHistoryStore((state) => state.remove);
+	const clear = useHistoryStore((state) => state.clear);
+
+	if (history.length === 0) return null;
+
 	return (
 		<Card>
 			<Card.Header className="flex flex-row items-center justify-between">
 				<Card.Title className="text-lg font-semibold">History</Card.Title>
 				<Card.Description className="flex gap-1">
-					<Button
-						size="sm"
-						variant="danger-soft"
-						onClick={() => resultsHistory.clear()}
-					>
+					<Button size="sm" variant="danger-soft" onClick={() => clear()}>
 						Clear all history
 					</Button>
 				</Card.Description>
 			</Card.Header>
 			<ScrollShadow className="w-full min-w-[650px] max-h-[525px] flex flex-col gap-4 pr-2 pl-0.5">
-				{resultsHistory.history.toReversed().map((resolution) => (
+				{history.toReversed().map((resolution) => (
 					<div
 						key={resolution.id}
 						className="w-full border border-zinc-800 p-3 rounded-xl transition hover:border-zinc-700"
@@ -77,9 +72,7 @@ export function ResultsHistoryCard({
 									isIconOnly
 									size="sm"
 									variant="outline"
-									onClick={() =>
-										resultsHistory.remove(resolution.id)
-									}
+									onClick={() => remove(resolution.id)}
 								>
 									<TrashSimpleIcon size={32} />
 								</Button>
