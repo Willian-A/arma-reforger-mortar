@@ -3,11 +3,11 @@ import { CrosshairSimpleIcon, TrashSimpleIcon } from "@phosphor-icons/react";
 
 import type {
 	HistoryItem,
-	ResolvedHistoryData,
+	HistoryState,
 } from "../stores/history.store";
 
 interface ResultsHistoryCardProps {
-	resultsHistory: ResolvedHistoryData;
+	resultsHistory: HistoryState;
 	setFormData: (historyData: HistoryItem) => void;
 }
 
@@ -23,7 +23,7 @@ export function ResultsHistoryCard({
 					<Button
 						size="sm"
 						variant="danger-soft"
-						onClick={() => resultsHistory.clearHistory()}
+						onClick={() => resultsHistory.clear()}
 					>
 						Clear all history
 					</Button>
@@ -78,7 +78,7 @@ export function ResultsHistoryCard({
 									size="sm"
 									variant="outline"
 									onClick={() =>
-										resultsHistory.removeFromHistory(resolution.id)
+										resultsHistory.remove(resolution.id)
 									}
 								>
 									<TrashSimpleIcon size={32} />

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 import {
 	type MortarResolution,
-	useResolvedMortarData,
+	useCurrentResolutionStore,
 } from "./current-resolution.store";
 
 const STORAGE_KEY = "resolved-mortar-solution";
@@ -28,60 +28,60 @@ function readStorage() {
 	return raw ? JSON.parse(raw) : null;
 }
 
-describe("useResolvedMortarData", () => {
+describe("useCurrentResolutionStore", () => {
 	beforeEach(() => {
 		sessionStorage.clear();
-		useResolvedMortarData.setState({ mortarResolution: null });
+		useCurrentResolutionStore.setState({ mortarResolution: null });
 	});
 
 	it("starts without resolution", () => {
-		expect(useResolvedMortarData.getState().mortarResolution).toBeNull();
+		expect(useCurrentResolutionStore.getState().mortarResolution).toBeNull();
 	});
 
-	it("saves resolution with updateResolution", () => {
-		useResolvedMortarData.getState().updateResolution(mockResolution);
+	it("saves resolution with set", () => {
+		useCurrentResolutionStore.getState().set(mockResolution);
 
-		expect(useResolvedMortarData.getState().mortarResolution).toEqual(
+		expect(useCurrentResolutionStore.getState().mortarResolution).toEqual(
 			mockResolution,
 		);
 	});
 
 	it("replaces the previous resolution", () => {
-		const { updateResolution } = useResolvedMortarData.getState();
+		const { set } = useCurrentResolutionStore.getState();
 		const newer = {
 			...mockResolution,
 			mortar: "2B14" as MortarModel,
 			shell: "SMOKE" as ShellType,
 		};
 
-		updateResolution(mockResolution);
-		updateResolution(newer);
+		set(mockResolution);
+		set(newer);
 
-		expect(useResolvedMortarData.getState().mortarResolution).toEqual(newer);
+		expect(useCurrentResolutionStore.getState().mortarResolution).toEqual(newer);
 	});
 
-	it("clears resolution with clearResolution", () => {
-		const { updateResolution, clearResolution } =
-			useResolvedMortarData.getState();
+	it("clears resolution with clear", () => {
+		const { set, clear } =
+			useCurrentResolutionStore.getState();
 
-		updateResolution(mockResolution);
-		clearResolution();
+		set(mockResolution);
+		clear();
 
-		expect(useResolvedMortarData.getState().mortarResolution).toBeNull();
+		expect(useCurrentResolutionStore.getState().mortarResolution).toBeNull();
 	});
 
 	it("persists resolution in sessionStorage", () => {
-		useResolvedMortarData.getState().updateResolution(mockResolution);
+		useCurrentResolutionStore.getState().set(mockResolution);
 
 		expect(readStorage()?.state).toEqual({ mortarResolution: mockResolution });
 	});
 
 	it("persists clear resolution in sessionStorage", () => {
-		const { updateResolution, clearResolution } =
-			useResolvedMortarData.getState();
+		const { set, clear } =
+			useCurrentResolutionStore.getState();
 
-		updateResolution(mockResolution);
-		clearResolution();
+		set(mockResolution);
+		clear();
 
 		expect(readStorage()?.state).toEqual({ mortarResolution: null });
 	});
@@ -95,9 +95,9 @@ describe("useResolvedMortarData", () => {
 			}),
 		);
 
-		await useResolvedMortarData.persist.rehydrate();
+		await useCurrentResolutionStore.persist.rehydrate();
 
-		expect(useResolvedMortarData.getState().mortarResolution).toEqual(
+		expect(useCurrentResolutionStore.getState().mortarResolution).toEqual(
 			mockResolution,
 		);
 	});

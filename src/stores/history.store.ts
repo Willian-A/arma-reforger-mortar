@@ -4,29 +4,29 @@ import type { MortarResolution } from "./current-resolution.store";
 
 export type HistoryItem = MortarResolution & { id: string };
 
-export type ResolvedHistoryData = {
+export type HistoryState = {
 	history: HistoryItem[];
-	addToHistory: (resolution: MortarResolution) => void;
-	removeFromHistory: (id: string) => void;
-	clearHistory: () => void;
+	add: (resolution: MortarResolution) => void;
+	remove: (id: string) => void;
+	clear: () => void;
 };
 
-export const useResolvedHistory = create<ResolvedHistoryData>()(
+export const useHistoryStore = create<HistoryState>()(
 	persist(
 		(set) => ({
 			history: [],
-			addToHistory: (resolution) =>
+			add: (resolution) =>
 				set((state) => ({
 					history: [
 						...state.history,
 						{ ...resolution, id: crypto.randomUUID() },
 					],
 				})),
-			removeFromHistory: (id) =>
+			remove: (id) =>
 				set((state) => ({
 					history: state.history.filter((item) => item.id !== id),
 				})),
-			clearHistory: () => set({ history: [] }),
+			clear: () => set({ history: [] }),
 		}),
 		{
 			name: "resolved-solution-history",

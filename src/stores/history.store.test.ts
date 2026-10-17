@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 import type { MortarResolution } from "./current-resolution.store";
-import { useResolvedHistory } from "./history.store";
+import { useHistoryStore } from "./history.store";
 
 const STORAGE_KEY = "resolved-solution-history";
 
@@ -26,100 +26,100 @@ function readStorage() {
 	return raw ? JSON.parse(raw) : null;
 }
 
-describe("useResolvedHistory", () => {
+describe("useHistoryStore", () => {
 	beforeEach(() => {
 		sessionStorage.clear();
-		useResolvedHistory.setState({ history: [] });
+		useHistoryStore.setState({ history: [] });
 	});
 
 	it("starts with empty history", () => {
-		expect(useResolvedHistory.getState().history).toEqual([]);
+		expect(useHistoryStore.getState().history).toEqual([]);
 	});
 
-	it("adds resolution to history with addToHistory", () => {
-		useResolvedHistory.getState().addToHistory(mockResolution);
+	it("adds resolution to history with add", () => {
+		useHistoryStore.getState().add(mockResolution);
 
-		const { history } = useResolvedHistory.getState();
+		const { history } = useHistoryStore.getState();
 		expect(history).toHaveLength(1);
 		expect(history[0]).toMatchObject(mockResolution);
 		expect(history[0].id).toBeTruthy();
 	});
 
 	it("assigns a unique id to each added item", () => {
-		const { addToHistory } = useResolvedHistory.getState();
+		const { add } = useHistoryStore.getState();
 
-		addToHistory(mockResolution);
-		addToHistory(mockResolution);
+		add(mockResolution);
+		add(mockResolution);
 
-		const [first, second] = useResolvedHistory.getState().history;
+		const [first, second] = useHistoryStore.getState().history;
 		expect(first.id).not.toEqual(second.id);
 	});
 
 	it("appends new items keeping previous ones", () => {
-		const { addToHistory } = useResolvedHistory.getState();
+		const { add } = useHistoryStore.getState();
 		const newer = {
 			...mockResolution,
 			mortar: "2B14" as MortarModel,
 			shell: "SMOKE" as ShellType,
 		};
 
-		addToHistory(mockResolution);
-		addToHistory(newer);
+		add(mockResolution);
+		add(newer);
 
-		const { history } = useResolvedHistory.getState();
+		const { history } = useHistoryStore.getState();
 		expect(history).toHaveLength(2);
 		expect(history[0]).toMatchObject(mockResolution);
 		expect(history[1]).toMatchObject(newer);
 	});
 
-	it("removes an item from history with removeFromHistory", () => {
-		const { addToHistory, removeFromHistory } = useResolvedHistory.getState();
+	it("removes an item from history with remove", () => {
+		const { add, remove } = useHistoryStore.getState();
 
-		addToHistory(mockResolution);
-		const [added] = useResolvedHistory.getState().history;
+		add(mockResolution);
+		const [added] = useHistoryStore.getState().history;
 
-		removeFromHistory(added.id);
+		remove(added.id);
 
-		expect(useResolvedHistory.getState().history).toEqual([]);
+		expect(useHistoryStore.getState().history).toEqual([]);
 	});
 
 	it("keeps other items when removing one from history", () => {
-		const { addToHistory, removeFromHistory } = useResolvedHistory.getState();
+		const { add, remove } = useHistoryStore.getState();
 
-		addToHistory(mockResolution);
-		addToHistory({
+		add(mockResolution);
+		add({
 			...mockResolution,
 			mortar: "2B14",
 			shell: "SMOKE",
 		});
-		const [first, second] = useResolvedHistory.getState().history;
+		const [first, second] = useHistoryStore.getState().history;
 
-		removeFromHistory(first.id);
+		remove(first.id);
 
-		expect(useResolvedHistory.getState().history).toEqual([second]);
+		expect(useHistoryStore.getState().history).toEqual([second]);
 	});
 
-	it("clears history with clearHistory", () => {
-		const { addToHistory, clearHistory } = useResolvedHistory.getState();
+	it("clears history with clear", () => {
+		const { add, clear } = useHistoryStore.getState();
 
-		addToHistory(mockResolution);
-		clearHistory();
+		add(mockResolution);
+		clear();
 
-		expect(useResolvedHistory.getState().history).toEqual([]);
+		expect(useHistoryStore.getState().history).toEqual([]);
 	});
 
 	it("persists history in sessionStorage", () => {
-		useResolvedHistory.getState().addToHistory(mockResolution);
+		useHistoryStore.getState().add(mockResolution);
 
-		const { history } = useResolvedHistory.getState();
+		const { history } = useHistoryStore.getState();
 		expect(readStorage()?.state).toEqual({ history });
 	});
 
 	it("persists cleared history in sessionStorage", () => {
-		const { addToHistory, clearHistory } = useResolvedHistory.getState();
+		const { add, clear } = useHistoryStore.getState();
 
-		addToHistory(mockResolution);
-		clearHistory();
+		add(mockResolution);
+		clear();
 
 		expect(readStorage()?.state).toEqual({ history: [] });
 	});
@@ -134,8 +134,8 @@ describe("useResolvedHistory", () => {
 			}),
 		);
 
-		await useResolvedHistory.persist.rehydrate();
+		await useHistoryStore.persist.rehydrate();
 
-		expect(useResolvedHistory.getState().history).toEqual([savedItem]);
+		expect(useHistoryStore.getState().history).toEqual([savedItem]);
 	});
 });

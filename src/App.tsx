@@ -12,23 +12,23 @@ import {
 import { StepOne } from "./components/ResolveMortarForm/StepOne";
 import { StepTwo } from "./components/ResolveMortarForm/StepTwo";
 import { ResultsHistoryCard } from "./components/ResultsHistoryCard";
-import { useResolvedMortarData } from "./stores/current-resolution.store";
-import { type HistoryItem, useResolvedHistory } from "./stores/history.store";
+import { useCurrentResolutionStore } from "./stores/current-resolution.store";
+import { type HistoryItem, useHistoryStore } from "./stores/history.store";
 
 export default function App() {
-	const cachedData = useStore(useResolvedMortarData);
-	const resolvedHistory = useStore(useResolvedHistory);
-	const [step, setStep] = useState(cachedData.mortarResolution ? 1 : 0);
+	const currentResolution = useStore(useCurrentResolutionStore);
+	const resolvedHistory = useStore(useHistoryStore);
+	const [step, setStep] = useState(currentResolution.mortarResolution ? 1 : 0);
 
 	function handleDefaultValues() {
-		if (cachedData.mortarResolution) {
+		if (currentResolution.mortarResolution) {
 			return {
-				mortar: cachedData.mortarResolution.mortar,
-				shellType: cachedData.mortarResolution.shell,
-				origin: cachedData.mortarResolution.origin.grid,
-				originAltitude: cachedData.mortarResolution.origin.altitude,
-				target: cachedData.mortarResolution.target.grid,
-				targetAltitude: cachedData.mortarResolution.target.altitude,
+				mortar: currentResolution.mortarResolution.mortar,
+				shellType: currentResolution.mortarResolution.shell,
+				origin: currentResolution.mortarResolution.origin.grid,
+				originAltitude: currentResolution.mortarResolution.origin.altitude,
+				target: currentResolution.mortarResolution.target.grid,
+				targetAltitude: currentResolution.mortarResolution.target.altitude,
 			};
 		}
 
@@ -57,18 +57,18 @@ export default function App() {
 			resolution: resolvedMortarSolution,
 		};
 
-		cachedData.updateResolution(resolutionData);
-		resolvedHistory.addToHistory(resolutionData);
+		currentResolution.set(resolutionData);
+		resolvedHistory.add(resolutionData);
 	};
 
 	const handleNextStep = () => {
 		const isUsingSameGun =
-			cachedData.mortarResolution?.mortar !== methods.getValues("mortar");
+			currentResolution.mortarResolution?.mortar !== methods.getValues("mortar");
 		const isUsingSameShellType =
-			cachedData.mortarResolution?.shell !== methods.getValues("shellType");
+			currentResolution.mortarResolution?.shell !== methods.getValues("shellType");
 
 		if (isUsingSameGun || isUsingSameShellType) {
-			cachedData.clearResolution();
+			currentResolution.clear();
 			methods.resetDefaultValues({});
 			methods.resetField("target");
 			methods.resetField("targetAltitude");

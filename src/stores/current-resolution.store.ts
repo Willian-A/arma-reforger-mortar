@@ -11,18 +11,18 @@ export type MortarResolution = {
 	resolution: ResolvedFiringMortarData;
 };
 
-type ResolvedMortarData = {
+type CurrentResolutionState = {
 	mortarResolution: MortarResolution | null;
-	updateResolution: (mortarResolution: MortarResolution) => void;
-	clearResolution: () => void;
+	set: (mortarResolution: MortarResolution) => void;
+	clear: () => void;
 };
 
-export const useResolvedMortarData = create<ResolvedMortarData>()(
+export const useCurrentResolutionStore = create<CurrentResolutionState>()(
 	persist(
 		(set) => ({
 			mortarResolution: null,
-			updateResolution: (mortarResolution) => set({ mortarResolution }),
-			clearResolution: () => set({ mortarResolution: null }),
+			set: (mortarResolution) => set({ mortarResolution }),
+			clear: () => set({ mortarResolution: null }),
 		}),
 		{
 			name: "resolved-mortar-solution",
