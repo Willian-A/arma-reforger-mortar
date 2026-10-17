@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatGridCoords } from "./formatters";
+import { formatGridCoords } from "./format-grid";
 
 describe("formatGridCoords", () => {
 	it("formating 6 digits with multiple spaces", () => {

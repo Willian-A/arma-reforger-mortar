@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveFiringMortarData } from "./resolvers";
+import { resolveFiringMortarData } from "./firing-solution";
 
 describe("resolveFiringMortarData", () => {
 	it("resolves the firing mortar data correctly with 2B14", () => {

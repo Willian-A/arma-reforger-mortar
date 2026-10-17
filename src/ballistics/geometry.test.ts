@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateAzimuthMils, calculateDistance } from "./calculators";
+import { calculateAzimuthMils, calculateDistance } from "./geometry";
 
 describe("calculateDistance", () => {
 	it("calculates distance between two points", () => {

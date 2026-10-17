@@ -1,15 +1,15 @@
 import { toast } from "@heroui/react";
-import _2B14 from "../ballistics/data/2b14.json";
-import M252 from "../ballistics/data/m252.json";
+import { parseCoords } from "../grid/parse-grid";
+import _2B14 from "./data/2b14.json";
+import M252 from "./data/m252.json";
+import { calculateAzimuthMils, calculateDistance } from "./geometry";
 import {
 	type BallisticRow,
 	type GunType,
 	type Mortar,
 	MortarSchema,
 	type ShellType,
-} from "../ballistics/mortar.schema";
-import { calculateAzimuthMils, calculateDistance } from "./calculators";
-import { parseCoords } from "./parsers";
+} from "./mortar.schema";
 
 type FiringMortarData = {
 	mortar: GunType;

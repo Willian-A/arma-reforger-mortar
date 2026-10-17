@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseCoords } from "./parsers";
+import { parseCoords } from "./parse-grid";
 
 describe("parseCoords", () => {
 	it("split X and Y when separated by space", () => {

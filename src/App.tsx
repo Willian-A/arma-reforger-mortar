@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useStore } from "zustand";
 
+import { resolveFiringMortarData } from "./ballistics/firing-solution";
 import {
 	type ResolveMortarFormData,
 	resolveMortarFormSchema,
@@ -16,7 +17,6 @@ import {
 	useResolvedHistory,
 } from "./stores/resolved_history.store";
 import { useResolvedMortarData } from "./stores/resolved_mortar.store";
-import { resolveFiringMortarData } from "./utils/resolvers";
 
 export default function App() {
 	const cachedData = useStore(useResolvedMortarData);
