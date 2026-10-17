@@ -1,7 +1,7 @@
 import { FieldError, Input, Label, TextField } from "@heroui/react";
 import { Controller, useFormContext } from "react-hook-form";
 import { formatGridCoords } from "../../grid/format-grid";
-import type { ResolveMortarFormData } from "./ResolveMortarForm.schema";
+import type { ResolveMortarFormData } from "./resolve-mortar-form.schema";
 
 export const StepTwo = () => {
 	const { control } = useFormContext<ResolveMortarFormData>();

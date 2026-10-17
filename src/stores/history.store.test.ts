@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
 import type { GunType, ShellType } from "../ballistics/mortar.schema";
-import { useResolvedHistory } from "./resolved_history.store";
-import type { MortarResolution } from "./resolved_mortar.store";
+import type { MortarResolution } from "./current-resolution.store";
+import { useResolvedHistory } from "./history.store";
 
 const STORAGE_KEY = "resolved-solution-history";
 

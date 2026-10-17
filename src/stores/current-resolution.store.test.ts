@@ -4,7 +4,7 @@ import type { GunType, ShellType } from "../ballistics/mortar.schema";
 import {
 	type MortarResolution,
 	useResolvedMortarData,
-} from "./resolved_mortar.store";
+} from "./current-resolution.store";
 
 const STORAGE_KEY = "resolved-mortar-solution";
 

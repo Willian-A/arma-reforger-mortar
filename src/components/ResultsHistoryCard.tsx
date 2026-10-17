@@ -4,7 +4,7 @@ import { CrosshairSimpleIcon, TrashSimpleIcon } from "@phosphor-icons/react";
 import type {
 	HistoryItem,
 	ResolvedHistoryData,
-} from "../../stores/resolved_history.store";
+} from "../stores/history.store";
 
 interface ResultsHistoryCardProps {
 	resultsHistory: ResolvedHistoryData;

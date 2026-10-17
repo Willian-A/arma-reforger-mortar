@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { MortarResolution } from "./resolved_mortar.store";
+import type { MortarResolution } from "./current-resolution.store";
 
 export type HistoryItem = MortarResolution & { id: string };
 
