@@ -36,29 +36,28 @@ export function ResultsHistoryCard({ onRestore }: ResultsHistoryCardProps) {
 						</div>
 						<div className="flex gap-4">
 							<div className="flex gap-1">
-								<h1>firing from {resolution.origin.grid}</h1>
+								<span>firing from {resolution.origin.grid}</span>
 								{resolution.origin.altitude && (
-									<h1>{resolution.origin.altitude}m</h1>
+									<span>{resolution.origin.altitude}m</span>
 								)}
 							</div>
 							<div className="flex gap-1">
-								<h1>to {resolution.target.grid}</h1>
+								<span>to {resolution.target.grid}</span>
 								{resolution.target.altitude && (
-									<h1>{resolution.target.altitude}m</h1>
+									<span>{resolution.target.altitude}m</span>
 								)}
 							</div>
-							<h1>distance of {resolution.solution.distanceM}m</h1>
+							<span>distance of {resolution.solution.distanceM}m</span>
 						</div>
 						<div className="w-full flex justify-between gap-1">
-							<div className="flex gap-1">
-								<h1>{resolution.solution.charge} rings</h1>
-								<h1> · </h1>
-								<h1>azimuth {resolution.solution.azimuthMil} mil</h1>
-								<h1> · </h1>
-								<h1>elevation {resolution.solution.elevationMil} mil</h1>
-								<h1> · </h1>
-								<h1>Time of flight {resolution.solution.timeOfFlightS}s</h1>
-							</div>
+							<span>
+								{[
+									`${resolution.solution.charge} rings`,
+									`azimuth ${resolution.solution.azimuthMil} mil`,
+									`elevation ${resolution.solution.elevationMil} mil`,
+									`Time of flight ${resolution.solution.timeOfFlightS}s`,
+								].join(" · ")}
+							</span>
 							<div className="flex gap-1">
 								<Button
 									isIconOnly
