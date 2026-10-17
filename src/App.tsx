@@ -43,7 +43,7 @@ export default function App() {
 	const resolvedHistory = useStore(useHistoryStore);
 	const [step, setStep] = useState(currentResolution.mortarResolution ? 1 : 0);
 
-	function handleDefaultValues() {
+	function getDefaultValues() {
 		if (currentResolution.mortarResolution) {
 			return {
 				mortar: currentResolution.mortarResolution.mortar,
@@ -61,7 +61,7 @@ export default function App() {
 	const methods = useForm<ResolveMortarFormData>({
 		resolver: zodResolver(resolveMortarFormSchema),
 		reValidateMode: "onChange",
-		defaultValues: handleDefaultValues(),
+		defaultValues: getDefaultValues(),
 	});
 
 	const onSubmit = (data: ResolveMortarFormData) => {
@@ -89,12 +89,12 @@ export default function App() {
 	};
 
 	const handleNextStep = () => {
-		const isUsingSameGun =
+		const hasMortarChanged =
 			currentResolution.mortarResolution?.mortar !== methods.getValues("mortar");
-		const isUsingSameShellType =
+		const hasShellChanged =
 			currentResolution.mortarResolution?.shell !== methods.getValues("shellType");
 
-		if (isUsingSameGun || isUsingSameShellType) {
+		if (hasMortarChanged || hasShellChanged) {
 			currentResolution.clear();
 			methods.resetDefaultValues({});
 			methods.resetField("target");
@@ -106,9 +106,10 @@ export default function App() {
 		setStep(1);
 	};
 
-	const hasBasicInfo = methods.watch("mortar") && methods.watch("shellType");
+	const hasMortarAndShell =
+		methods.watch("mortar") && methods.watch("shellType");
 
-	function setFormDataFromHistory(historyData: HistoryItem) {
+	function restoreFromHistory(historyData: HistoryItem) {
 		const { setValues } = methods;
 		const { mortar, shell, origin, target } = historyData;
 
@@ -133,7 +134,7 @@ export default function App() {
 									Mortar Firing Resolution
 								</Card.Title>
 								<Card.Description className="flex gap-1">
-									{hasBasicInfo && step === 1 && (
+									{hasMortarAndShell && step === 1 && (
 										<>
 											<Chip>{methods.watch("mortar")}</Chip>
 											<Chip>{methods.watch("shellType")}</Chip>
@@ -175,7 +176,7 @@ export default function App() {
 						{resolvedHistory.history.length > 0 && (
 							<ResultsHistoryCard
 								resultsHistory={resolvedHistory}
-								setFormData={setFormDataFromHistory}
+								onRestore={restoreFromHistory}
 							/>
 						)}
 					</div>

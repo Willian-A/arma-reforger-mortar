@@ -8,12 +8,12 @@ import type {
 
 interface ResultsHistoryCardProps {
 	resultsHistory: HistoryState;
-	setFormData: (historyData: HistoryItem) => void;
+	onRestore: (historyData: HistoryItem) => void;
 }
 
 export function ResultsHistoryCard({
 	resultsHistory,
-	setFormData,
+	onRestore,
 }: ResultsHistoryCardProps) {
 	return (
 		<Card>
@@ -69,7 +69,7 @@ export function ResultsHistoryCard({
 									isIconOnly
 									size="sm"
 									variant="outline"
-									onClick={() => setFormData(resolution)}
+									onClick={() => onRestore(resolution)}
 								>
 									<CrosshairSimpleIcon size={32} />
 								</Button>
