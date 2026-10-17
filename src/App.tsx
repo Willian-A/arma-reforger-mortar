@@ -26,9 +26,9 @@ export default function App() {
 				mortar: cachedData.mortarResolution.mortar,
 				shellType: cachedData.mortarResolution.shell,
 				start: cachedData.mortarResolution.coords.start,
-				startHeight: cachedData.mortarResolution.coords.startHeight,
+				startAltitude: cachedData.mortarResolution.coords.startAltitude,
 				end: cachedData.mortarResolution.coords.end,
-				endHeight: cachedData.mortarResolution.coords.endHeight,
+				endAltitude: cachedData.mortarResolution.coords.endAltitude,
 			};
 		}
 
@@ -47,8 +47,8 @@ export default function App() {
 			coords: {
 				start: data.start,
 				end: data.end,
-				startZ: String(data.startHeight),
-				endZ: String(data.endHeight),
+				startAltitude: String(data.startAltitude),
+				endAltitude: String(data.endAltitude),
 			},
 			shellType: data.shellType,
 		});
@@ -58,9 +58,9 @@ export default function App() {
 			shell: data.shellType,
 			coords: {
 				start: data.start,
-				startHeight: data.startHeight,
+				startAltitude: data.startAltitude,
 				end: data.end,
-				endHeight: data.endHeight,
+				endAltitude: data.endAltitude,
 			},
 			resolution: resolvedMortarSolution,
 		};
@@ -79,9 +79,9 @@ export default function App() {
 			cachedData.clearResolution();
 			methods.resetDefaultValues({});
 			methods.resetField("end");
-			methods.resetField("endHeight");
+			methods.resetField("endAltitude");
 			methods.resetField("start");
-			methods.resetField("startHeight");
+			methods.resetField("startAltitude");
 		}
 
 		setStep(1);
@@ -96,9 +96,9 @@ export default function App() {
 		setValues({
 			mortar,
 			start: coords.start,
-			startHeight: coords.startHeight,
+			startAltitude: coords.startAltitude,
 			end: coords.end,
-			endHeight: coords.endHeight,
+			endAltitude: coords.endAltitude,
 			shellType: shell,
 		});
 	}

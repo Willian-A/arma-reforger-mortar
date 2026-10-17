@@ -30,7 +30,7 @@ export const StepTwo = () => {
 				/>
 				<Controller
 					control={control}
-					name="startHeight"
+					name="startAltitude"
 					render={({ field, fieldState }) => (
 						<div className="flex-col gap-2 w-32">
 							<Label>Altitude</Label>
@@ -67,7 +67,7 @@ export const StepTwo = () => {
 				/>
 				<Controller
 					control={control}
-					name="endHeight"
+					name="endAltitude"
 					render={({ field, fieldState }) => (
 						<div className="flex-col gap-2 w-32">
 							<Label>Altitude</Label>

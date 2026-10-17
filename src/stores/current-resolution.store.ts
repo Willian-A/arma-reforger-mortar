@@ -8,9 +8,9 @@ export type MortarResolution = {
 	shell: ShellType;
 	coords: {
 		start: string;
-		startHeight: string | undefined;
+		startAltitude: string | undefined;
 		end: string;
-		endHeight: string | undefined;
+		endAltitude: string | undefined;
 	};
 	resolution: ResolvedFiringMortarData;
 };

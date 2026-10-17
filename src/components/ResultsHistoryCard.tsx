@@ -42,14 +42,14 @@ export function ResultsHistoryCard({
 						<div className="flex gap-4">
 							<div className="flex gap-1">
 								<h1>firing from {resolution.coords.start}</h1>
-								{resolution.coords.startHeight && (
-									<h1>{resolution.coords.startHeight}m</h1>
+								{resolution.coords.startAltitude && (
+									<h1>{resolution.coords.startAltitude}m</h1>
 								)}
 							</div>
 							<div className="flex gap-1">
 								<h1>to {resolution.coords.end}</h1>
-								{resolution.coords.endHeight && (
-									<h1>{resolution.coords.endHeight}m</h1>
+								{resolution.coords.endAltitude && (
+									<h1>{resolution.coords.endAltitude}m</h1>
 								)}
 							</div>
 							<h1>distance of {resolution.resolution.distance}m</h1>

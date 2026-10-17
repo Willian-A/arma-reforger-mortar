@@ -1,6 +1,6 @@
 import { toast } from "@heroui/react";
 
-function parseCoords(coords: string, height: string): string[] {
+function parseCoords(coords: string, altitude: string): string[] {
 	const formattedCoords = coords.trim().replaceAll(" ", "");
 
 	if (formattedCoords.length !== 6) {
@@ -31,9 +31,9 @@ function parseCoords(coords: string, height: string): string[] {
 		throw new Error("Coords must be positive");
 	}
 
-	const Z = height.trim().replaceAll(" ", "");
+	const normalizedAltitude = altitude.trim().replaceAll(" ", "");
 
-	return [X, Y, Z];
+	return [X, Y, normalizedAltitude];
 }
 
 export { parseCoords };

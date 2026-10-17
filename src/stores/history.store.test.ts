@@ -11,9 +11,9 @@ const mockResolution: MortarResolution = {
 	shell: "HE",
 	coords: {
 		start: "050 050",
-		startHeight: undefined,
+		startAltitude: undefined,
 		end: "059 062",
-		endHeight: undefined,
+		endAltitude: undefined,
 	},
 	resolution: {
 		rings: 3,

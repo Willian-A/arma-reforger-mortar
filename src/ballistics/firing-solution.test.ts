@@ -14,9 +14,9 @@ describe("resolveFiringMortarData", () => {
 			mortar: "2B14",
 			coords: {
 				start: "050 050",
-				startZ: "100",
+				startAltitude: "100",
 				end: "065 050",
-				endZ: "50",
+				endAltitude: "50",
 			},
 			shellType: "HE",
 		});
@@ -41,9 +41,9 @@ describe("resolveFiringMortarData", () => {
 			mortar: "M252",
 			coords: {
 				start: "050 050",
-				startZ: "100",
+				startAltitude: "100",
 				end: "065 050",
-				endZ: "50",
+				endAltitude: "50",
 			},
 			shellType: "HE",
 		});
@@ -56,14 +56,14 @@ describe("resolveFiringMortarData", () => {
 		expect(altitudeCorrection).toBe(22);
 	});
 
-	it("treats a non-numeric startZ as 0 instead of propagating NaN", () => {
+	it("treats a non-numeric startAltitude as 0 instead of propagating NaN", () => {
 		const { elevation, altitudeCorrection } = resolveFiringMortarData({
 			mortar: "2B14",
 			coords: {
 				start: "050 050",
-				startZ: "undefined",
+				startAltitude: "undefined",
 				end: "065 050",
-				endZ: "50",
+				endAltitude: "50",
 			},
 			shellType: "HE",
 		});
@@ -72,10 +72,10 @@ describe("resolveFiringMortarData", () => {
 		expect(elevation).toBe(1028);
 	});
 
-	it("treats empty startZ/endZ as 0 altitude difference", () => {
+	it("treats empty startAltitude/endAltitude as 0 altitude difference", () => {
 		const { elevation, altitudeCorrection } = resolveFiringMortarData({
 			mortar: "M252",
-			coords: { start: "050 050", startZ: "", end: "065 050", endZ: "" },
+			coords: { start: "050 050", startAltitude: "", end: "065 050", endAltitude: "" },
 			shellType: "HE",
 		});
 

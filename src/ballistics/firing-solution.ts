@@ -13,7 +13,12 @@ import {
 
 type FiringMortarData = {
 	mortar: MortarModel;
-	coords: { start: string; startZ: string; end: string; endZ: string };
+	coords: {
+		start: string;
+		startAltitude: string;
+		end: string;
+		endAltitude: string;
+	};
 	shellType: ShellType;
 };
 
@@ -102,8 +107,11 @@ function resolveFiringMortarData({
 	shellType,
 }: FiringMortarData): ResolvedFiringMortarData {
 	const mortarData = MORTARS[mortar];
-	const [startX, startY, startZ] = parseCoords(coords.start, coords.startZ);
-	const [endX, endY, endZ] = parseCoords(coords.end, coords.endZ);
+	const [startX, startY, startAltitude] = parseCoords(
+		coords.start,
+		coords.startAltitude,
+	);
+	const [endX, endY, endAltitude] = parseCoords(coords.end, coords.endAltitude);
 
 	const distance = calculateDistance({
 		start: { x: Number(startX), y: Number(startY) },
@@ -123,7 +131,8 @@ function resolveFiringMortarData({
 	}
 
 	const solution = interpolateRow(rows, distance);
-	const altitudeDiff = (Number(startZ) || 0) - (Number(endZ) || 0); // positive = target is lower
+	const altitudeDiff =
+		(Number(startAltitude) || 0) - (Number(endAltitude) || 0); // positive = target is lower
 	const altitudeCorrection =
 		(altitudeDiff / 100) * (solution.dElevPer100mDrop ?? 0);
 	const elevation = solution.elevationMil + altitudeCorrection;
