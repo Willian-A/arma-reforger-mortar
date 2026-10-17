@@ -5,6 +5,7 @@ import M252 from "./data/m252.json";
 import { calculateAzimuth, calculateDistance } from "./geometry";
 import {
 	type BallisticRow,
+	type Charge,
 	type Mortar,
 	type MortarModel,
 	mortarSchema,
@@ -36,7 +37,7 @@ function findCharge(
 	mortarData: Mortar,
 	shellType: ShellType,
 	distance: number,
-): [number, BallisticRow[]] {
+): Charge {
 	const shell = mortarData.shells.find((shell) => shell.type === shellType);
 	if (!shell) throw new Error(`No mortar shell found for ${shellType}`);
 
@@ -52,7 +53,7 @@ function findCharge(
 		throw new Error(`No mortar shell charge for ${distance}m range`);
 	}
 
-	return [charge.charge, charge.rows];
+	return charge;
 }
 
 function lerp(a: number, b: number, t: number): number {
@@ -104,47 +105,33 @@ function calculateFiringSolution({
 	shellType,
 }: FiringSolutionInput): FiringSolution {
 	const mortarData = MORTARS[mortar];
-	const [originX, originY, originAltitude] = parseGrid(
-		origin.grid,
-		origin.altitude,
-	);
-	const [targetX, targetY, targetAltitude] = parseGrid(
-		target.grid,
-		target.altitude,
-	);
+	const originPoint = parseGrid(origin.grid);
+	const targetPoint = parseGrid(target.grid);
 
 	const distance = calculateDistance({
-		origin: { x: Number(originX), y: Number(originY) },
-		target: { x: Number(targetX), y: Number(targetY) },
+		origin: originPoint,
+		target: targetPoint,
 	});
 
-	const [charge, rows] = findCharge(mortarData, shellType, distance);
-	if (!rows) {
-		toast("Out of firing range", {
-			description: `No charge reaches ${Math.round(distance)}m with ${shellType}`,
-			variant: "warning",
-			timeout: 5000,
-		});
-		throw new Error(
-			`No charge reaches ${Math.round(distance)}m with ${shellType}`,
-		);
-	}
-
-	const interpolatedRow = interpolateBallisticRow(rows, distance);
+	const selectedCharge = findCharge(mortarData, shellType, distance);
+	const interpolatedRow = interpolateBallisticRow(
+		selectedCharge.rows,
+		distance,
+	);
 	const altitudeDiff =
-		(Number(originAltitude) || 0) - (Number(targetAltitude) || 0); // positive = target is lower
+		(Number(origin.altitude) || 0) - (Number(target.altitude) || 0); // positive = target is lower
 	const altitudeCorrection =
 		(altitudeDiff / 100) * (interpolatedRow.dElevPer100mDrop ?? 0);
 	const elevation = interpolatedRow.elevationMil + altitudeCorrection;
 
 	const azimuth = calculateAzimuth({
-		origin: { x: Number(originX), y: Number(originY) },
-		target: { x: Number(targetX), y: Number(targetY) },
+		origin: originPoint,
+		target: targetPoint,
 		mortar,
 	});
 
 	return {
-		charge,
+		charge: selectedCharge.charge,
 		distanceM: Math.round(distance),
 		elevationMil: Math.round(elevation),
 		azimuthMil: Math.round(azimuth),
