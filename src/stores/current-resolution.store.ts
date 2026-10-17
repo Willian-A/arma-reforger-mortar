@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { ResolvedFiringMortarData } from "../ballistics/firing-solution";
-import type { GunType, ShellType } from "../ballistics/mortar.schema";
+import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 
 export type MortarResolution = {
-	weapon: { name: GunType; shell: ShellType };
+	mortar: MortarModel;
+	shell: ShellType;
 	coords: {
 		start: string;
 		startHeight: string | undefined;

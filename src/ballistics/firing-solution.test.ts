@@ -18,7 +18,7 @@ describe("resolveFiringMortarData", () => {
 				end: "065 050",
 				endZ: "50",
 			},
-			shell_type: "HE",
+			shellType: "HE",
 		});
 
 		expect(rings).toBe(3);
@@ -45,7 +45,7 @@ describe("resolveFiringMortarData", () => {
 				end: "065 050",
 				endZ: "50",
 			},
-			shell_type: "HE",
+			shellType: "HE",
 		});
 
 		expect(rings).toBe(2);
@@ -65,7 +65,7 @@ describe("resolveFiringMortarData", () => {
 				end: "065 050",
 				endZ: "50",
 			},
-			shell_type: "HE",
+			shellType: "HE",
 		});
 
 		expect(altitudeCorrection).toBe(-12);
@@ -76,7 +76,7 @@ describe("resolveFiringMortarData", () => {
 		const { elevation, altitudeCorrection } = resolveFiringMortarData({
 			mortar: "M252",
 			coords: { start: "050 050", startZ: "", end: "065 050", endZ: "" },
-			shell_type: "HE",
+			shellType: "HE",
 		});
 
 		expect(altitudeCorrection).toBe(0);

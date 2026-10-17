@@ -5,16 +5,16 @@ import M252 from "./data/m252.json";
 import { calculateAzimuthMils, calculateDistance } from "./geometry";
 import {
 	type BallisticRow,
-	type GunType,
 	type Mortar,
+	type MortarModel,
 	MortarSchema,
 	type ShellType,
 } from "./mortar.schema";
 
 type FiringMortarData = {
-	mortar: GunType;
+	mortar: MortarModel;
 	coords: { start: string; startZ: string; end: string; endZ: string };
-	shell_type: ShellType;
+	shellType: ShellType;
 };
 
 export type ResolvedFiringMortarData = {
@@ -33,11 +33,11 @@ const MORTARS = {
 
 function resolveShellCharges(
 	mortarData: Mortar,
-	shell_type: ShellType,
+	shellType: ShellType,
 	distance: number,
 ): [number, BallisticRow[]] {
-	const shell = mortarData.shells.find((shell) => shell.type === shell_type);
-	if (!shell) throw new Error(`No mortar shell found for ${shell_type}`);
+	const shell = mortarData.shells.find((shell) => shell.type === shellType);
+	if (!shell) throw new Error(`No mortar shell found for ${shellType}`);
 
 	const charge = shell.charges.find(
 		(charge) => charge.minRangeM <= distance && distance <= charge.maxRangeM,
@@ -99,7 +99,7 @@ function interpolateRow(rows: BallisticRow[], distance: number) {
 function resolveFiringMortarData({
 	mortar,
 	coords,
-	shell_type,
+	shellType,
 }: FiringMortarData): ResolvedFiringMortarData {
 	const mortarData = MORTARS[mortar];
 	const [startX, startY, startZ] = parseCoords(coords.start, coords.startZ);
@@ -110,15 +110,15 @@ function resolveFiringMortarData({
 		end: { x: Number(endX), y: Number(endY) },
 	});
 
-	const [rings, rows] = resolveShellCharges(mortarData, shell_type, distance);
+	const [rings, rows] = resolveShellCharges(mortarData, shellType, distance);
 	if (!rows) {
 		toast("Out of firing range", {
-			description: `No charge reaches ${Math.round(distance)}m with ${shell_type}`,
+			description: `No charge reaches ${Math.round(distance)}m with ${shellType}`,
 			variant: "warning",
 			timeout: 5000,
 		});
 		throw new Error(
-			`No charge reaches ${Math.round(distance)}m with ${shell_type}`,
+			`No charge reaches ${Math.round(distance)}m with ${shellType}`,
 		);
 	}
 

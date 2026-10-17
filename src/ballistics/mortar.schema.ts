@@ -5,7 +5,7 @@ export const ShellTypeSchema = z.enum(
 	"Shell type is required",
 );
 
-export const GunTypeSchema = z.enum(["M252", "2B14"], "Gun is required");
+export const MortarModelSchema = z.enum(["M252", "2B14"], "Mortar is required");
 
 export const FactionSchema = z.enum(["US", "USSR"]);
 
@@ -47,4 +47,4 @@ export type BallisticRow = z.infer<typeof BallisticRowSchema>;
 export type Charge = z.infer<typeof ChargeSchema>;
 export type Shell = z.infer<typeof ShellSchema>;
 export type Mortar = z.infer<typeof MortarSchema>;
-export type GunType = z.infer<typeof GunTypeSchema>;
+export type MortarModel = z.infer<typeof MortarModelSchema>;

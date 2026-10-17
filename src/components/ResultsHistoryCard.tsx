@@ -36,8 +36,8 @@ export function ResultsHistoryCard({
 						className="w-full border border-zinc-800 p-3 rounded-xl transition hover:border-zinc-700"
 					>
 						<div className="flex gap-2">
-							<Chip>{resolution.weapon.name}</Chip>
-							<Chip>{resolution.weapon.shell}</Chip>
+							<Chip>{resolution.mortar}</Chip>
+							<Chip>{resolution.shell}</Chip>
 						</div>
 						<div className="flex gap-4">
 							<div className="flex gap-1">

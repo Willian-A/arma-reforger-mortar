@@ -1,13 +1,14 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
-import type { GunType, ShellType } from "../ballistics/mortar.schema";
+import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 import type { MortarResolution } from "./current-resolution.store";
 import { useResolvedHistory } from "./history.store";
 
 const STORAGE_KEY = "resolved-solution-history";
 
 const mockResolution: MortarResolution = {
-	weapon: { name: "M252", shell: "HE" },
+	mortar: "M252",
+	shell: "HE",
 	coords: {
 		start: "050 050",
 		startHeight: undefined,
@@ -62,7 +63,8 @@ describe("useResolvedHistory", () => {
 		const { addToHistory } = useResolvedHistory.getState();
 		const newer = {
 			...mockResolution,
-			weapon: { name: "2B14" as GunType, shell: "SMOKE" as ShellType },
+			mortar: "2B14" as MortarModel,
+			shell: "SMOKE" as ShellType,
 		};
 
 		addToHistory(mockResolution);
@@ -91,7 +93,8 @@ describe("useResolvedHistory", () => {
 		addToHistory(mockResolution);
 		addToHistory({
 			...mockResolution,
-			weapon: { name: "2B14", shell: "SMOKE" },
+			mortar: "2B14",
+			shell: "SMOKE",
 		});
 		const [first, second] = useResolvedHistory.getState().history;
 

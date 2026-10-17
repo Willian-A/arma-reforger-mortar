@@ -1,14 +1,14 @@
 import { z } from "zod";
 import {
-	GunTypeSchema,
+	MortarModelSchema,
 	ShellTypeSchema,
 } from "../../ballistics/mortar.schema";
 
 const GRID_COORDS_REGEX = /^\d{3} \d{3}$/;
 const ALTITUDE_REGEX = /^\d{0,4}$/;
 
-export const weaponStepSchema = z.object({
-	mortarGun: GunTypeSchema,
+export const mortarStepSchema = z.object({
+	mortar: MortarModelSchema,
 	shellType: ShellTypeSchema,
 });
 
@@ -29,7 +29,7 @@ export const coordsStepSchema = z.object({
 		.optional(),
 });
 
-export const resolveMortarFormSchema = weaponStepSchema.extend(
+export const resolveMortarFormSchema = mortarStepSchema.extend(
 	coordsStepSchema.shape,
 );
 

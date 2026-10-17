@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
-import type { GunType, ShellType } from "../ballistics/mortar.schema";
+import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 import {
 	type MortarResolution,
 	useResolvedMortarData,
@@ -9,7 +9,8 @@ import {
 const STORAGE_KEY = "resolved-mortar-solution";
 
 const mockResolution: MortarResolution = {
-	weapon: { name: "M252", shell: "HE" },
+	mortar: "M252",
+	shell: "HE",
 	coords: {
 		start: "050050",
 		startHeight: "0",
@@ -53,7 +54,8 @@ describe("useResolvedMortarData", () => {
 		const { updateResolution } = useResolvedMortarData.getState();
 		const newer = {
 			...mockResolution,
-			weapon: { name: "2B14" as GunType, shell: "SMOKE" as ShellType },
+			mortar: "2B14" as MortarModel,
+			shell: "SMOKE" as ShellType,
 		};
 
 		updateResolution(mockResolution);

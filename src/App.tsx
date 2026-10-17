@@ -23,8 +23,8 @@ export default function App() {
 	function handleDefaultValues() {
 		if (cachedData.mortarResolution) {
 			return {
-				mortarGun: cachedData.mortarResolution.weapon.name,
-				shellType: cachedData.mortarResolution.weapon.shell,
+				mortar: cachedData.mortarResolution.mortar,
+				shellType: cachedData.mortarResolution.shell,
 				start: cachedData.mortarResolution.coords.start,
 				startHeight: cachedData.mortarResolution.coords.startHeight,
 				end: cachedData.mortarResolution.coords.end,
@@ -43,18 +43,19 @@ export default function App() {
 
 	const onSubmit = (data: ResolveMortarFormData) => {
 		const resolvedMortarSolution = resolveFiringMortarData({
-			mortar: data.mortarGun,
+			mortar: data.mortar,
 			coords: {
 				start: data.start,
 				end: data.end,
 				startZ: String(data.startHeight),
 				endZ: String(data.endHeight),
 			},
-			shell_type: data.shellType,
+			shellType: data.shellType,
 		});
 
 		const resolutionData = {
-			weapon: { name: data.mortarGun, shell: data.shellType },
+			mortar: data.mortar,
+			shell: data.shellType,
 			coords: {
 				start: data.start,
 				startHeight: data.startHeight,
@@ -70,11 +71,9 @@ export default function App() {
 
 	const handleNextStep = () => {
 		const isUsingSameGun =
-			cachedData.mortarResolution?.weapon.name !==
-			methods.getValues("mortarGun");
+			cachedData.mortarResolution?.mortar !== methods.getValues("mortar");
 		const isUsingSameShellType =
-			cachedData.mortarResolution?.weapon.shell !==
-			methods.getValues("shellType");
+			cachedData.mortarResolution?.shell !== methods.getValues("shellType");
 
 		if (isUsingSameGun || isUsingSameShellType) {
 			cachedData.clearResolution();
@@ -88,19 +87,19 @@ export default function App() {
 		setStep(1);
 	};
 
-	const hasBasicInfo = methods.watch("mortarGun") && methods.watch("shellType");
+	const hasBasicInfo = methods.watch("mortar") && methods.watch("shellType");
 
 	function setFormDataFromHistory(historyData: HistoryItem) {
 		const { setValues } = methods;
-		const { weapon, coords } = historyData;
+		const { mortar, shell, coords } = historyData;
 
 		setValues({
-			mortarGun: weapon.name,
+			mortar,
 			start: coords.start,
 			startHeight: coords.startHeight,
 			end: coords.end,
 			endHeight: coords.endHeight,
-			shellType: weapon.shell,
+			shellType: shell,
 		});
 	}
 
@@ -117,7 +116,7 @@ export default function App() {
 								<Card.Description className="flex gap-1">
 									{hasBasicInfo && step === 1 && (
 										<>
-											<Chip>{methods.watch("mortarGun")}</Chip>
+											<Chip>{methods.watch("mortar")}</Chip>
 											<Chip>{methods.watch("shellType")}</Chip>
 										</>
 									)}

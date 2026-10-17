@@ -9,7 +9,7 @@ export const StepOne = () => {
 		<div className="flex flex-col gap-4">
 			<Controller
 				control={control}
-				name="mortarGun"
+				name="mortar"
 				render={({ field, fieldState }) => (
 					<Select
 						placeholder="Select one"
