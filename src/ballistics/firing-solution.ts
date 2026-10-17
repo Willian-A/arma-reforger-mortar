@@ -7,7 +7,7 @@ import {
 	type BallisticRow,
 	type Mortar,
 	type MortarModel,
-	MortarSchema,
+	mortarSchema,
 	type ShellType,
 } from "./mortar.schema";
 
@@ -28,8 +28,8 @@ export type ResolvedFiringMortarData = {
 };
 
 const MORTARS = {
-	M252: MortarSchema.parse(M252),
-	"2B14": MortarSchema.parse(_2B14),
+	M252: mortarSchema.parse(M252),
+	"2B14": mortarSchema.parse(_2B14),
 } satisfies Record<string, Mortar>;
 
 function resolveShellCharges(

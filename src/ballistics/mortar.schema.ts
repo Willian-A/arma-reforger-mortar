@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-export const ShellTypeSchema = z.enum(
+export const shellTypeSchema = z.enum(
 	["HE", "SMOKE", "ILLUMINATION", "PRACTICE"],
 	"Shell type is required",
 );
 
-export const MortarModelSchema = z.enum(["M252", "2B14"], "Mortar is required");
+export const mortarModelSchema = z.enum(["M252", "2B14"], "Mortar is required");
 
-export const FactionSchema = z.enum(["US", "USSR"]);
+export const factionSchema = z.enum(["US", "USSR"]);
 
-export const BallisticRowSchema = z.strictObject({
+export const ballisticRowSchema = z.strictObject({
 	rangeM: z.number().int().positive(),
 	elevationMil: z.number().int().min(700).max(1600),
 	timeOfFlightS: z.number().positive(),
@@ -17,34 +17,34 @@ export const BallisticRowSchema = z.strictObject({
 	verified: z.boolean(),
 });
 
-export const ChargeSchema = z.strictObject({
+export const chargeSchema = z.strictObject({
 	charge: z.number().int().min(0),
 	averageDispersionM: z.number().positive(),
 	minRangeM: z.number().int().positive(),
 	maxRangeM: z.number().int().positive(),
-	rows: z.array(BallisticRowSchema).min(2),
+	rows: z.array(ballisticRowSchema).min(2),
 });
 
-export const ShellSchema = z.strictObject({
+export const shellSchema = z.strictObject({
 	id: z.string().regex(/^[a-z0-9-]+$/),
 	name: z.string().min(1),
-	type: ShellTypeSchema,
-	charges: z.array(ChargeSchema).min(1),
+	type: shellTypeSchema,
+	charges: z.array(chargeSchema).min(1),
 });
 
-export const MortarSchema = z.strictObject({
+export const mortarSchema = z.strictObject({
 	id: z.string().regex(/^[a-z0-9-]+$/),
 	name: z.string().min(1),
-	faction: FactionSchema,
+	faction: factionSchema,
 	caliberMm: z.number().positive(),
 	azimuthMilsPerCircle: z.union([z.literal(6000), z.literal(6400)]),
-	shells: z.array(ShellSchema).min(1),
+	shells: z.array(shellSchema).min(1),
 });
 
-export type ShellType = z.infer<typeof ShellTypeSchema>;
-export type Faction = z.infer<typeof FactionSchema>;
-export type BallisticRow = z.infer<typeof BallisticRowSchema>;
-export type Charge = z.infer<typeof ChargeSchema>;
-export type Shell = z.infer<typeof ShellSchema>;
-export type Mortar = z.infer<typeof MortarSchema>;
-export type MortarModel = z.infer<typeof MortarModelSchema>;
+export type ShellType = z.infer<typeof shellTypeSchema>;
+export type Faction = z.infer<typeof factionSchema>;
+export type BallisticRow = z.infer<typeof ballisticRowSchema>;
+export type Charge = z.infer<typeof chargeSchema>;
+export type Shell = z.infer<typeof shellSchema>;
+export type Mortar = z.infer<typeof mortarSchema>;
+export type MortarModel = z.infer<typeof mortarModelSchema>;

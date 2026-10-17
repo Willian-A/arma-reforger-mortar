@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { MortarSchema, type Shell } from "../mortar.schema";
+import { mortarSchema, type Shell } from "../mortar.schema";
 import data from "./m252.json";
 
-const mortar = MortarSchema.parse(data);
+const mortar = mortarSchema.parse(data);
 
 const expectedShells = [
 	{ id: "m821", name: "M821 HE", type: "HE", charges: [0, 1, 2, 3, 4] },
@@ -29,7 +29,7 @@ function getShell(id: string): Shell {
 
 describe("m252", () => {
 	it("follows the schema", () => {
-		expect(() => MortarSchema.parse(data)).not.toThrow();
+		expect(() => mortarSchema.parse(data)).not.toThrow();
 	});
 
 	it("has the basic information", () => {

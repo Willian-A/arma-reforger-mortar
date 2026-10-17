@@ -1,15 +1,15 @@
 import { z } from "zod";
 import {
-	MortarModelSchema,
-	ShellTypeSchema,
+	mortarModelSchema,
+	shellTypeSchema,
 } from "../../ballistics/mortar.schema";
 
 const GRID_REGEX = /^\d{3} \d{3}$/;
 const ALTITUDE_REGEX = /^\d{0,4}$/;
 
 export const mortarStepSchema = z.object({
-	mortar: MortarModelSchema,
-	shellType: ShellTypeSchema,
+	mortar: mortarModelSchema,
+	shellType: shellTypeSchema,
 });
 
 export const positionsStepSchema = z.object({
