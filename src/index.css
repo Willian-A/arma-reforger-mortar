@@ -2,7 +2,7 @@
 @import "@heroui/styles";
 
 @layer base {
-    html {
-        @apply bg-[#060607];
-    }
+	html {
+		@apply bg-[#060607];
+	}
 }

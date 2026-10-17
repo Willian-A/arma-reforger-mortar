@@ -97,7 +97,8 @@ export function ResolveMortarForm({
 
 	const handleNextStep = () => {
 		const hasMortarChanged =
-			currentResolution.mortarResolution?.mortar !== methods.getValues("mortar");
+			currentResolution.mortarResolution?.mortar !==
+			methods.getValues("mortar");
 		const hasShellChanged =
 			currentResolution.mortarResolution?.shell !==
 			methods.getValues("shellType");

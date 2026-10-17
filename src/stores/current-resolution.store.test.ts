@@ -57,12 +57,13 @@ describe("useCurrentResolutionStore", () => {
 		set(mockResolution);
 		set(newer);
 
-		expect(useCurrentResolutionStore.getState().mortarResolution).toEqual(newer);
+		expect(useCurrentResolutionStore.getState().mortarResolution).toEqual(
+			newer,
+		);
 	});
 
 	it("clears resolution with clear", () => {
-		const { set, clear } =
-			useCurrentResolutionStore.getState();
+		const { set, clear } = useCurrentResolutionStore.getState();
 
 		set(mockResolution);
 		clear();
@@ -77,8 +78,7 @@ describe("useCurrentResolutionStore", () => {
 	});
 
 	it("persists clear resolution in sessionStorage", () => {
-		const { set, clear } =
-			useCurrentResolutionStore.getState();
+		const { set, clear } = useCurrentResolutionStore.getState();
 
 		set(mockResolution);
 		clear();
