@@ -1,4 +1,4 @@
-export function formatGridCoords(value: string): string {
+export function formatGrid(value: string): string {
 	const digits = value.replace(/\D/g, "").slice(0, 6);
 
 	return digits.length > 3

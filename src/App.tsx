@@ -25,10 +25,10 @@ export default function App() {
 			return {
 				mortar: cachedData.mortarResolution.mortar,
 				shellType: cachedData.mortarResolution.shell,
-				start: cachedData.mortarResolution.coords.start,
-				startAltitude: cachedData.mortarResolution.coords.startAltitude,
-				end: cachedData.mortarResolution.coords.end,
-				endAltitude: cachedData.mortarResolution.coords.endAltitude,
+				origin: cachedData.mortarResolution.origin.grid,
+				originAltitude: cachedData.mortarResolution.origin.altitude,
+				target: cachedData.mortarResolution.target.grid,
+				targetAltitude: cachedData.mortarResolution.target.altitude,
 			};
 		}
 
@@ -44,24 +44,16 @@ export default function App() {
 	const onSubmit = (data: ResolveMortarFormData) => {
 		const resolvedMortarSolution = resolveFiringMortarData({
 			mortar: data.mortar,
-			coords: {
-				start: data.start,
-				end: data.end,
-				startAltitude: String(data.startAltitude),
-				endAltitude: String(data.endAltitude),
-			},
+			origin: { grid: data.origin, altitude: String(data.originAltitude) },
+			target: { grid: data.target, altitude: String(data.targetAltitude) },
 			shellType: data.shellType,
 		});
 
 		const resolutionData = {
 			mortar: data.mortar,
 			shell: data.shellType,
-			coords: {
-				start: data.start,
-				startAltitude: data.startAltitude,
-				end: data.end,
-				endAltitude: data.endAltitude,
-			},
+			origin: { grid: data.origin, altitude: data.originAltitude },
+			target: { grid: data.target, altitude: data.targetAltitude },
 			resolution: resolvedMortarSolution,
 		};
 
@@ -78,10 +70,10 @@ export default function App() {
 		if (isUsingSameGun || isUsingSameShellType) {
 			cachedData.clearResolution();
 			methods.resetDefaultValues({});
-			methods.resetField("end");
-			methods.resetField("endAltitude");
-			methods.resetField("start");
-			methods.resetField("startAltitude");
+			methods.resetField("target");
+			methods.resetField("targetAltitude");
+			methods.resetField("origin");
+			methods.resetField("originAltitude");
 		}
 
 		setStep(1);
@@ -91,14 +83,14 @@ export default function App() {
 
 	function setFormDataFromHistory(historyData: HistoryItem) {
 		const { setValues } = methods;
-		const { mortar, shell, coords } = historyData;
+		const { mortar, shell, origin, target } = historyData;
 
 		setValues({
 			mortar,
-			start: coords.start,
-			startAltitude: coords.startAltitude,
-			end: coords.end,
-			endAltitude: coords.endAltitude,
+			origin: origin.grid,
+			originAltitude: origin.altitude,
+			target: target.grid,
+			targetAltitude: target.altitude,
 			shellType: shell,
 		});
 	}

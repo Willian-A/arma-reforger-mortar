@@ -1,6 +1,6 @@
 import { FieldError, Input, Label, TextField } from "@heroui/react";
 import { Controller, useFormContext } from "react-hook-form";
-import { formatGridCoords } from "../../grid/format-grid";
+import { formatGrid } from "../../grid/format-grid";
 import type { ResolveMortarFormData } from "./resolve-mortar-form.schema";
 
 export const StepTwo = () => {
@@ -11,13 +11,13 @@ export const StepTwo = () => {
 			<div className="flex gap-2 w-full">
 				<Controller
 					control={control}
-					name="start"
+					name="origin"
 					render={({ field, fieldState }) => (
 						<TextField
 							className="w-full"
 							name={field.name}
 							value={field.value ?? null}
-							onChange={(value) => field.onChange(formatGridCoords(value))}
+							onChange={(value) => field.onChange(formatGrid(value))}
 							onBlur={field.onBlur}
 							isInvalid={fieldState.invalid}
 							maxLength={7}
@@ -30,7 +30,7 @@ export const StepTwo = () => {
 				/>
 				<Controller
 					control={control}
-					name="startAltitude"
+					name="originAltitude"
 					render={({ field, fieldState }) => (
 						<div className="flex-col gap-2 w-32">
 							<Label>Altitude</Label>
@@ -48,13 +48,13 @@ export const StepTwo = () => {
 			<div className="flex gap-2 w-full">
 				<Controller
 					control={control}
-					name="end"
+					name="target"
 					render={({ field, fieldState }) => (
 						<TextField
 							className="w-full"
 							name={field.name}
 							value={field.value ?? null}
-							onChange={(value) => field.onChange(formatGridCoords(value))}
+							onChange={(value) => field.onChange(formatGrid(value))}
 							onBlur={field.onBlur}
 							isInvalid={fieldState.invalid}
 							maxLength={7}
@@ -67,7 +67,7 @@ export const StepTwo = () => {
 				/>
 				<Controller
 					control={control}
-					name="endAltitude"
+					name="targetAltitude"
 					render={({ field, fieldState }) => (
 						<div className="flex-col gap-2 w-32">
 							<Label>Altitude</Label>

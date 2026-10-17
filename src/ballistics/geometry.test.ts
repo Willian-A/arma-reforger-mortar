@@ -5,8 +5,8 @@ import { calculateAzimuthMils, calculateDistance } from "./geometry";
 describe("calculateDistance", () => {
 	it("calculates distance between two points", () => {
 		const result = calculateDistance({
-			start: { x: 100, y: 200 },
-			end: { x: 300, y: 400 },
+			origin: { x: 100, y: 200 },
+			target: { x: 300, y: 400 },
 		});
 		expect(result).toBeCloseTo(28284);
 	});
@@ -22,9 +22,9 @@ describe("calculateAzimuthMils", () => {
 		["oeste", { x: 400, y: 500 }, 4800],
 	])(
 		"calculates azimuth between two points with M252 mortar",
-		(_, end, expected) => {
+		(_, target, expected) => {
 			expect(
-				calculateAzimuthMils({ start: origin, end, mortar: "M252" }),
+				calculateAzimuthMils({ origin, target, mortar: "M252" }),
 			).toBeCloseTo(expected);
 		},
 	);
@@ -36,9 +36,9 @@ describe("calculateAzimuthMils", () => {
 		["oeste", { x: 400, y: 500 }, 4500],
 	])(
 		"calculates azimuth between two points with 2B14 mortar",
-		(_, end, expected) => {
+		(_, target, expected) => {
 			expect(
-				calculateAzimuthMils({ start: origin, end, mortar: "2B14" }),
+				calculateAzimuthMils({ origin, target, mortar: "2B14" }),
 			).toBeCloseTo(expected);
 		},
 	);

@@ -6,12 +6,8 @@ import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 export type MortarResolution = {
 	mortar: MortarModel;
 	shell: ShellType;
-	coords: {
-		start: string;
-		startAltitude: string | undefined;
-		end: string;
-		endAltitude: string | undefined;
-	};
+	origin: { grid: string; altitude: string | undefined };
+	target: { grid: string; altitude: string | undefined };
 	resolution: ResolvedFiringMortarData;
 };
 

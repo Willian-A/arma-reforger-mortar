@@ -9,12 +9,8 @@ const STORAGE_KEY = "resolved-solution-history";
 const mockResolution: MortarResolution = {
 	mortar: "M252",
 	shell: "HE",
-	coords: {
-		start: "050 050",
-		startAltitude: undefined,
-		end: "059 062",
-		endAltitude: undefined,
-	},
+	origin: { grid: "050 050", altitude: undefined },
+	target: { grid: "059 062", altitude: undefined },
 	resolution: {
 		rings: 3,
 		distance: 1500,

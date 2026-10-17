@@ -1,5 +1,5 @@
 import { toast } from "@heroui/react";
-import { parseCoords } from "../grid/parse-grid";
+import { parseGrid } from "../grid/parse-grid";
 import _2B14 from "./data/2b14.json";
 import M252 from "./data/m252.json";
 import { calculateAzimuthMils, calculateDistance } from "./geometry";
@@ -13,12 +13,8 @@ import {
 
 type FiringMortarData = {
 	mortar: MortarModel;
-	coords: {
-		start: string;
-		startAltitude: string;
-		end: string;
-		endAltitude: string;
-	};
+	origin: { grid: string; altitude: string };
+	target: { grid: string; altitude: string };
 	shellType: ShellType;
 };
 
@@ -103,19 +99,23 @@ function interpolateRow(rows: BallisticRow[], distance: number) {
 
 function resolveFiringMortarData({
 	mortar,
-	coords,
+	origin,
+	target,
 	shellType,
 }: FiringMortarData): ResolvedFiringMortarData {
 	const mortarData = MORTARS[mortar];
-	const [startX, startY, startAltitude] = parseCoords(
-		coords.start,
-		coords.startAltitude,
+	const [originX, originY, originAltitude] = parseGrid(
+		origin.grid,
+		origin.altitude,
 	);
-	const [endX, endY, endAltitude] = parseCoords(coords.end, coords.endAltitude);
+	const [targetX, targetY, targetAltitude] = parseGrid(
+		target.grid,
+		target.altitude,
+	);
 
 	const distance = calculateDistance({
-		start: { x: Number(startX), y: Number(startY) },
-		end: { x: Number(endX), y: Number(endY) },
+		origin: { x: Number(originX), y: Number(originY) },
+		target: { x: Number(targetX), y: Number(targetY) },
 	});
 
 	const [rings, rows] = resolveShellCharges(mortarData, shellType, distance);
@@ -132,14 +132,14 @@ function resolveFiringMortarData({
 
 	const solution = interpolateRow(rows, distance);
 	const altitudeDiff =
-		(Number(startAltitude) || 0) - (Number(endAltitude) || 0); // positive = target is lower
+		(Number(originAltitude) || 0) - (Number(targetAltitude) || 0); // positive = target is lower
 	const altitudeCorrection =
 		(altitudeDiff / 100) * (solution.dElevPer100mDrop ?? 0);
 	const elevation = solution.elevationMil + altitudeCorrection;
 
 	const azimuth = calculateAzimuthMils({
-		start: { x: Number(startX), y: Number(startY) },
-		end: { x: Number(endX), y: Number(endY) },
+		origin: { x: Number(originX), y: Number(originY) },
+		target: { x: Number(targetX), y: Number(targetY) },
 		mortar,
 	});
 
