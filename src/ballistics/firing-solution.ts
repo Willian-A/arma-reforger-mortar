@@ -2,7 +2,7 @@ import { toast } from "@heroui/react";
 import { parseGrid } from "../grid/parse-grid";
 import _2B14 from "./data/2b14.json";
 import M252 from "./data/m252.json";
-import { calculateAzimuthMils, calculateDistance } from "./geometry";
+import { calculateAzimuth, calculateDistance } from "./geometry";
 import {
 	type BallisticRow,
 	type Mortar,
@@ -11,14 +11,14 @@ import {
 	type ShellType,
 } from "./mortar.schema";
 
-type FiringMortarData = {
+type FiringSolutionInput = {
 	mortar: MortarModel;
 	origin: { grid: string; altitude: string };
 	target: { grid: string; altitude: string };
 	shellType: ShellType;
 };
 
-export type ResolvedFiringMortarData = {
+export type FiringSolution = {
 	charge: number;
 	distanceM: number;
 	elevationMil: number;
@@ -32,7 +32,7 @@ const MORTARS = {
 	"2B14": mortarSchema.parse(_2B14),
 } satisfies Record<string, Mortar>;
 
-function resolveShellCharges(
+function findCharge(
 	mortarData: Mortar,
 	shellType: ShellType,
 	distance: number,
@@ -59,7 +59,7 @@ function lerp(a: number, b: number, t: number): number {
 	return a + t * (b - a);
 }
 
-function interpolateRow(rows: BallisticRow[], distance: number) {
+function interpolateBallisticRow(rows: BallisticRow[], distance: number) {
 	const first = rows[0];
 	const last = rows[rows.length - 1];
 
@@ -97,12 +97,12 @@ function interpolateRow(rows: BallisticRow[], distance: number) {
 	};
 }
 
-function resolveFiringMortarData({
+function calculateFiringSolution({
 	mortar,
 	origin,
 	target,
 	shellType,
-}: FiringMortarData): ResolvedFiringMortarData {
+}: FiringSolutionInput): FiringSolution {
 	const mortarData = MORTARS[mortar];
 	const [originX, originY, originAltitude] = parseGrid(
 		origin.grid,
@@ -118,7 +118,7 @@ function resolveFiringMortarData({
 		target: { x: Number(targetX), y: Number(targetY) },
 	});
 
-	const [charge, rows] = resolveShellCharges(mortarData, shellType, distance);
+	const [charge, rows] = findCharge(mortarData, shellType, distance);
 	if (!rows) {
 		toast("Out of firing range", {
 			description: `No charge reaches ${Math.round(distance)}m with ${shellType}`,
@@ -130,14 +130,14 @@ function resolveFiringMortarData({
 		);
 	}
 
-	const solution = interpolateRow(rows, distance);
+	const interpolatedRow = interpolateBallisticRow(rows, distance);
 	const altitudeDiff =
 		(Number(originAltitude) || 0) - (Number(targetAltitude) || 0); // positive = target is lower
 	const altitudeCorrection =
-		(altitudeDiff / 100) * (solution.dElevPer100mDrop ?? 0);
-	const elevation = solution.elevationMil + altitudeCorrection;
+		(altitudeDiff / 100) * (interpolatedRow.dElevPer100mDrop ?? 0);
+	const elevation = interpolatedRow.elevationMil + altitudeCorrection;
 
-	const azimuth = calculateAzimuthMils({
+	const azimuth = calculateAzimuth({
 		origin: { x: Number(originX), y: Number(originY) },
 		target: { x: Number(targetX), y: Number(targetY) },
 		mortar,
@@ -148,9 +148,9 @@ function resolveFiringMortarData({
 		distanceM: Math.round(distance),
 		elevationMil: Math.round(elevation),
 		azimuthMil: Math.round(azimuth),
-		timeOfFlightS: Number(solution.timeOfFlightS.toFixed(1)),
+		timeOfFlightS: Number(interpolatedRow.timeOfFlightS.toFixed(1)),
 		altitudeCorrectionMil: Math.round(altitudeCorrection),
 	};
 }
 
-export { resolveFiringMortarData };
+export { calculateFiringSolution };

@@ -2,18 +2,18 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 import {
-	type MortarResolution,
+	type Resolution,
 	useCurrentResolutionStore,
 } from "./current-resolution.store";
 
 const STORAGE_KEY = "resolved-mortar-solution";
 
-const mockResolution: MortarResolution = {
+const mockResolution: Resolution = {
 	mortar: "M252",
 	shell: "HE",
 	origin: { grid: "050050", altitude: "0" },
 	target: { grid: "059062", altitude: "0" },
-	resolution: {
+	solution: {
 		charge: 3,
 		distanceM: 1500,
 		elevationMil: 1243,

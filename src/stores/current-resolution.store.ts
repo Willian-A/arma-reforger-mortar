@@ -1,19 +1,19 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { ResolvedFiringMortarData } from "../ballistics/firing-solution";
+import type { FiringSolution } from "../ballistics/firing-solution";
 import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
 
-export type MortarResolution = {
+export type Resolution = {
 	mortar: MortarModel;
 	shell: ShellType;
 	origin: { grid: string; altitude: string | undefined };
 	target: { grid: string; altitude: string | undefined };
-	resolution: ResolvedFiringMortarData;
+	solution: FiringSolution;
 };
 
 type CurrentResolutionState = {
-	mortarResolution: MortarResolution | null;
-	set: (mortarResolution: MortarResolution) => void;
+	mortarResolution: Resolution | null;
+	set: (mortarResolution: Resolution) => void;
 	clear: () => void;
 };
 

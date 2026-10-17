@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateAzimuthMils, calculateDistance } from "./geometry";
+import { calculateAzimuth, calculateDistance } from "./geometry";
 
 describe("calculateDistance", () => {
 	it("calculates distance between two points", () => {
@@ -12,7 +12,7 @@ describe("calculateDistance", () => {
 	});
 });
 
-describe("calculateAzimuthMils", () => {
+describe("calculateAzimuth", () => {
 	const origin = { x: 500, y: 500 };
 
 	it.each([
@@ -24,7 +24,7 @@ describe("calculateAzimuthMils", () => {
 		"calculates azimuth between two points with M252 mortar",
 		(_, target, expected) => {
 			expect(
-				calculateAzimuthMils({ origin, target, mortar: "M252" }),
+				calculateAzimuth({ origin, target, mortar: "M252" }),
 			).toBeCloseTo(expected);
 		},
 	);
@@ -38,7 +38,7 @@ describe("calculateAzimuthMils", () => {
 		"calculates azimuth between two points with 2B14 mortar",
 		(_, target, expected) => {
 			expect(
-				calculateAzimuthMils({ origin, target, mortar: "2B14" }),
+				calculateAzimuth({ origin, target, mortar: "2B14" }),
 			).toBeCloseTo(expected);
 		},
 	);

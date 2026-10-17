@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useStore } from "zustand";
 
-import { resolveFiringMortarData } from "./ballistics/firing-solution";
+import { calculateFiringSolution } from "./ballistics/firing-solution";
 import {
 	type ResolveMortarFormData,
 	resolveMortarFormSchema,
@@ -42,7 +42,7 @@ export default function App() {
 	});
 
 	const onSubmit = (data: ResolveMortarFormData) => {
-		const resolvedMortarSolution = resolveFiringMortarData({
+		const solution = calculateFiringSolution({
 			mortar: data.mortar,
 			origin: { grid: data.origin, altitude: String(data.originAltitude) },
 			target: { grid: data.target, altitude: String(data.targetAltitude) },
@@ -54,7 +54,7 @@ export default function App() {
 			shell: data.shellType,
 			origin: { grid: data.origin, altitude: data.originAltitude },
 			target: { grid: data.target, altitude: data.targetAltitude },
-			resolution: resolvedMortarSolution,
+			solution,
 		};
 
 		currentResolution.set(resolutionData);

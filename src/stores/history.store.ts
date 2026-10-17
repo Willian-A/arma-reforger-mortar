@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { MortarResolution } from "./current-resolution.store";
+import type { Resolution } from "./current-resolution.store";
 
-export type HistoryItem = MortarResolution & { id: string };
+export type HistoryItem = Resolution & { id: string };
 
 export type HistoryState = {
 	history: HistoryItem[];
-	add: (resolution: MortarResolution) => void;
+	add: (resolution: Resolution) => void;
 	remove: (id: string) => void;
 	clear: () => void;
 };

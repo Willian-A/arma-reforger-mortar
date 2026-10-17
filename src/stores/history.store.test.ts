@@ -1,17 +1,17 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
 import type { MortarModel, ShellType } from "../ballistics/mortar.schema";
-import type { MortarResolution } from "./current-resolution.store";
+import type { Resolution } from "./current-resolution.store";
 import { useHistoryStore } from "./history.store";
 
 const STORAGE_KEY = "resolved-solution-history";
 
-const mockResolution: MortarResolution = {
+const mockResolution: Resolution = {
 	mortar: "M252",
 	shell: "HE",
 	origin: { grid: "050 050", altitude: undefined },
 	target: { grid: "059 062", altitude: undefined },
-	resolution: {
+	solution: {
 		charge: 3,
 		distanceM: 1500,
 		elevationMil: 1243,

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { resolveFiringMortarData } from "./firing-solution";
+import { calculateFiringSolution } from "./firing-solution";
 
-describe("resolveFiringMortarData", () => {
+describe("calculateFiringSolution", () => {
 	it("resolves the firing mortar data correctly with 2B14", () => {
 		const {
 			charge,
@@ -10,7 +10,7 @@ describe("resolveFiringMortarData", () => {
 			azimuthMil,
 			timeOfFlightS,
 			altitudeCorrectionMil,
-		} = resolveFiringMortarData({
+		} = calculateFiringSolution({
 			mortar: "2B14",
 			origin: { grid: "050 050", altitude: "100" },
 			target: { grid: "065 050", altitude: "50" },
@@ -33,7 +33,7 @@ describe("resolveFiringMortarData", () => {
 			azimuthMil,
 			timeOfFlightS,
 			altitudeCorrectionMil,
-		} = resolveFiringMortarData({
+		} = calculateFiringSolution({
 			mortar: "M252",
 			origin: { grid: "050 050", altitude: "100" },
 			target: { grid: "065 050", altitude: "50" },
@@ -49,7 +49,7 @@ describe("resolveFiringMortarData", () => {
 	});
 
 	it("treats a non-numeric origin altitude as 0 instead of propagating NaN", () => {
-		const { elevationMil, altitudeCorrectionMil } = resolveFiringMortarData({
+		const { elevationMil, altitudeCorrectionMil } = calculateFiringSolution({
 			mortar: "2B14",
 			origin: { grid: "050 050", altitude: "undefined" },
 			target: { grid: "065 050", altitude: "50" },
@@ -61,7 +61,7 @@ describe("resolveFiringMortarData", () => {
 	});
 
 	it("treats empty origin/target altitude as 0 altitude difference", () => {
-		const { elevationMil, altitudeCorrectionMil } = resolveFiringMortarData({
+		const { elevationMil, altitudeCorrectionMil } = calculateFiringSolution({
 			mortar: "M252",
 			origin: { grid: "050 050", altitude: "" },
 			target: { grid: "065 050", altitude: "" },

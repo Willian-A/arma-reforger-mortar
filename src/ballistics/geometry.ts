@@ -12,7 +12,7 @@ function calculateDistance({
 	return Number(distance);
 }
 
-function calculateAzimuthMils({
+function calculateAzimuth({
 	origin,
 	target,
 	mortar,
@@ -33,4 +33,4 @@ function calculateAzimuthMils({
 	return Number(((normalized / (2 * Math.PI)) * milsPerCircle).toFixed(0));
 }
 
-export { calculateAzimuthMils, calculateDistance };
+export { calculateAzimuth, calculateDistance };
