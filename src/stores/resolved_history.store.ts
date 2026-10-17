@@ -1,4 +1,4 @@
-import { create, type ExtractState } from "zustand";
+import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { MortarResolution } from "./resolved_mortar.store";
 
@@ -35,5 +35,3 @@ export const useResolvedHistory = create<ResolvedHistoryData>()(
 		},
 	),
 );
-
-export type ResolvedHistoryState = ExtractState<typeof useResolvedHistory>;

@@ -1,4 +1,4 @@
-import { create, type ExtractState } from "zustand";
+import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { GunType, ShellType } from "../ballistics/mortar.schema";
 import type { ResolvedFiringMortarData } from "../utils/resolvers";
@@ -34,5 +34,3 @@ export const useResolvedMortarData = create<ResolvedMortarData>()(
 		},
 	),
 );
-
-export type ResolvedMortarState = ExtractState<typeof useResolvedMortarData>;

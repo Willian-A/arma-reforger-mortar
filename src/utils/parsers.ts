@@ -1,19 +1,5 @@
 import { toast } from "@heroui/react";
 
-function gridToMeters(x: string, y: string): string[] {
-	const xMeters = (parseInt(x, 10) * 100).toString();
-	const yMeters = (parseInt(y, 10) * 100).toString();
-
-	return [xMeters, yMeters];
-}
-
-function centerCoords(xMeters: string, yMeters: string): string[] {
-	const centerX = (parseInt(xMeters, 10) + 50).toString();
-	const centerY = (parseInt(yMeters, 10) + 50).toString();
-
-	return [centerX, centerY];
-}
-
 function parseCoords(coords: string, height: string): string[] {
 	const formattedCoords = coords.trim().replaceAll(" ", "");
 
@@ -50,4 +36,4 @@ function parseCoords(coords: string, height: string): string[] {
 	return [X, Y, Z];
 }
 
-export { centerCoords, gridToMeters, parseCoords };
+export { parseCoords };

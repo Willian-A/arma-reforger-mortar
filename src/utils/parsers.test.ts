@@ -1,20 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { centerCoords, gridToMeters, parseCoords } from "./parsers";
-
-describe("gridToMeters", () => {
-	it("converts grid coordinates to meters", () => {
-		const result = gridToMeters("005", "010");
-		expect(result).toEqual(["500", "1000"]);
-	});
-});
-
-describe("centerCoords", () => {
-	it("converts grid coordinates to center meters", () => {
-		const result = centerCoords("200", "300");
-		expect(result).toEqual(["250", "350"]);
-	});
-});
+import { parseCoords } from "./parsers";
 
 describe("parseCoords", () => {
 	it("split X and Y when separated by space", () => {

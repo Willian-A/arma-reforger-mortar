@@ -1,10 +1,3 @@
-function calculatePrecision(): number {
-	const axis_margin = 100 / 2; // 3 digits is 100m by default
-	const precision = Math.round(axis_margin * Math.SQRT2); // 71
-
-	return precision;
-}
-
 function calculateDistance({
 	start,
 	end,
@@ -40,4 +33,4 @@ function calculateAzimuthMils({
 	return Number(((normalized / (2 * Math.PI)) * milsPerCircle).toFixed(0));
 }
 
-export { calculateAzimuthMils, calculateDistance, calculatePrecision };
+export { calculateAzimuthMils, calculateDistance };

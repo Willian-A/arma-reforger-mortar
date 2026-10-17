@@ -1,17 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {
-	calculateAzimuthMils,
-	calculateDistance,
-	calculatePrecision,
-} from "./calculators";
-
-describe("calculatePrecision", () => {
-	it("calculates precision in meters based on grid size", () => {
-		const result = calculatePrecision();
-		expect(result).toEqual(71);
-	});
-});
+import { calculateAzimuthMils, calculateDistance } from "./calculators";
 
 describe("calculateDistance", () => {
 	it("calculates distance between two points", () => {
