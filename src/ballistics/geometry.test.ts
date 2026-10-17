@@ -24,7 +24,7 @@ describe("calculateAzimuth", () => {
 		"calculates azimuth between two points with M252 mortar",
 		(_, target, expected) => {
 			expect(
-				calculateAzimuth({ origin, target, mortar: "M252" }),
+				calculateAzimuth({ origin, target, milsPerCircle: 6400 }),
 			).toBeCloseTo(expected);
 		},
 	);
@@ -38,7 +38,7 @@ describe("calculateAzimuth", () => {
 		"calculates azimuth between two points with 2B14 mortar",
 		(_, target, expected) => {
 			expect(
-				calculateAzimuth({ origin, target, mortar: "2B14" }),
+				calculateAzimuth({ origin, target, milsPerCircle: 6000 }),
 			).toBeCloseTo(expected);
 		},
 	);

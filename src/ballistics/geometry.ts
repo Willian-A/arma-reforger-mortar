@@ -15,14 +15,12 @@ function calculateDistance({
 function calculateAzimuth({
 	origin,
 	target,
-	mortar,
+	milsPerCircle,
 }: {
 	origin: { x: number; y: number };
 	target: { x: number; y: number };
-	mortar: "M252" | "2B14";
+	milsPerCircle: number;
 }): number {
-	const milsPerCircle = mortar === "M252" ? 6400 : 6000;
-
 	const dx = target.x - origin.x;
 	const dy = target.y - origin.y;
 

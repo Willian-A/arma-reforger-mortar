@@ -127,7 +127,7 @@ function calculateFiringSolution({
 	const azimuth = calculateAzimuth({
 		origin: originPoint,
 		target: targetPoint,
-		mortar,
+		milsPerCircle: mortarData.azimuthMilsPerCircle,
 	});
 
 	return {
