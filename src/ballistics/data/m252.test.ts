@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { MortarSchema, type Shell } from "../mortar.schema";
 import data from "./m252.json";
-import { MortarSchema, type Shell } from "./mortars.schema";
 
 const mortar = MortarSchema.parse(data);
 

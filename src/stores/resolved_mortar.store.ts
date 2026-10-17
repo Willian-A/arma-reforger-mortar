@@ -1,6 +1,6 @@
 import { create, type ExtractState } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { GunType, ShellType } from "../mortars_data/mortars.schema";
+import type { GunType, ShellType } from "../ballistics/mortar.schema";
 import type { ResolvedFiringMortarData } from "../utils/resolvers";
 
 export type MortarResolution = {

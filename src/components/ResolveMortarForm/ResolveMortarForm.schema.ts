@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
 	GunTypeSchema,
 	ShellTypeSchema,
-} from "../../mortars_data/mortars.schema";
+} from "../../ballistics/mortar.schema";
 
 const GRID_COORDS_REGEX = /^\d{3} \d{3}$/;
 const ALTITUDE_REGEX = /^\d{0,4}$/;
