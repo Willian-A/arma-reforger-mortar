@@ -12,12 +12,12 @@ const mockResolution: MortarResolution = {
 	origin: { grid: "050 050", altitude: undefined },
 	target: { grid: "059 062", altitude: undefined },
 	resolution: {
-		rings: 3,
-		distance: 1500,
-		elevation: 1243,
-		azimuth: 655,
-		timeOfFlight: 30.5,
-		altitudeCorrection: 0,
+		charge: 3,
+		distanceM: 1500,
+		elevationMil: 1243,
+		azimuthMil: 655,
+		timeOfFlightS: 30.5,
+		altitudeCorrectionMil: 0,
 	},
 };
 

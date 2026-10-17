@@ -19,12 +19,12 @@ type FiringMortarData = {
 };
 
 export type ResolvedFiringMortarData = {
-	rings: number;
-	distance: number;
-	elevation: number;
-	azimuth: number;
-	timeOfFlight: number;
-	altitudeCorrection: number;
+	charge: number;
+	distanceM: number;
+	elevationMil: number;
+	azimuthMil: number;
+	timeOfFlightS: number;
+	altitudeCorrectionMil: number;
 };
 
 const MORTARS = {
@@ -118,7 +118,7 @@ function resolveFiringMortarData({
 		target: { x: Number(targetX), y: Number(targetY) },
 	});
 
-	const [rings, rows] = resolveShellCharges(mortarData, shellType, distance);
+	const [charge, rows] = resolveShellCharges(mortarData, shellType, distance);
 	if (!rows) {
 		toast("Out of firing range", {
 			description: `No charge reaches ${Math.round(distance)}m with ${shellType}`,
@@ -144,12 +144,12 @@ function resolveFiringMortarData({
 	});
 
 	return {
-		rings,
-		distance: Math.round(distance),
-		elevation: Math.round(elevation),
-		azimuth: Math.round(azimuth),
-		timeOfFlight: Number(solution.timeOfFlightS.toFixed(1)),
-		altitudeCorrection: Math.round(altitudeCorrection),
+		charge,
+		distanceM: Math.round(distance),
+		elevationMil: Math.round(elevation),
+		azimuthMil: Math.round(azimuth),
+		timeOfFlightS: Number(solution.timeOfFlightS.toFixed(1)),
+		altitudeCorrectionMil: Math.round(altitudeCorrection),
 	};
 }
 

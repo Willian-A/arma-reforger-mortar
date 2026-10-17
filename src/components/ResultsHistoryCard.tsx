@@ -52,17 +52,17 @@ export function ResultsHistoryCard({
 									<h1>{resolution.target.altitude}m</h1>
 								)}
 							</div>
-							<h1>distance of {resolution.resolution.distance}m</h1>
+							<h1>distance of {resolution.resolution.distanceM}m</h1>
 						</div>
 						<div className="w-full flex justify-between gap-1">
 							<div className="flex gap-1">
-								<h1>{resolution.resolution.rings} rings</h1>
+								<h1>{resolution.resolution.charge} rings</h1>
 								<h1> · </h1>
-								<h1>azimuth {resolution.resolution.azimuth} mil</h1>
+								<h1>azimuth {resolution.resolution.azimuthMil} mil</h1>
 								<h1> · </h1>
-								<h1>elevation {resolution.resolution.elevation} mil</h1>
+								<h1>elevation {resolution.resolution.elevationMil} mil</h1>
 								<h1> · </h1>
-								<h1>Time of flight {resolution.resolution.timeOfFlight}s</h1>
+								<h1>Time of flight {resolution.resolution.timeOfFlightS}s</h1>
 							</div>
 							<div className="flex gap-1">
 								<Button
