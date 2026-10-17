@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { NoChargeError } from "./errors";
 import { calculateFiringSolution } from "./firing-solution";
 
 describe("calculateFiringSolution", () => {
@@ -70,5 +71,16 @@ describe("calculateFiringSolution", () => {
 
 		expect(altitudeCorrectionMil).toBe(0);
 		expect(elevationMil).toBe(1009);
+	});
+
+	it("throws NoChargeError when no charge covers the distance", () => {
+		expect(() =>
+			calculateFiringSolution({
+				mortar: "M252",
+				origin: { grid: "000 000", altitude: "" },
+				target: { grid: "999 999", altitude: "" },
+				shellType: "HE",
+			}),
+		).toThrow(NoChargeError);
 	});
 });

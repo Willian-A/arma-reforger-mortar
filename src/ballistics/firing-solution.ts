@@ -1,7 +1,7 @@
-import { toast } from "@heroui/react";
 import { parseGrid } from "../grid/parse-grid";
 import _2B14 from "./data/2b14.json";
 import M252 from "./data/m252.json";
+import { NoChargeError, OutOfRangeError } from "./errors";
 import { calculateAzimuth, calculateDistance } from "./geometry";
 import {
 	type BallisticRow,
@@ -44,14 +44,7 @@ function findCharge(
 	const charge = shell.charges.find(
 		(charge) => charge.minRangeM <= distance && distance <= charge.maxRangeM,
 	);
-	if (!charge) {
-		toast("No mortar shell found", {
-			description: `No mortar shell charge for ${distance}m range`,
-			variant: "warning",
-			timeout: 5000,
-		});
-		throw new Error(`No mortar shell charge for ${distance}m range`);
-	}
+	if (!charge) throw new NoChargeError(distance);
 
 	return charge;
 }
@@ -65,12 +58,7 @@ function interpolateBallisticRow(rows: BallisticRow[], distance: number) {
 	const last = rows[rows.length - 1];
 
 	if (distance < first.rangeM || distance > last.rangeM) {
-		toast("Out of charge range", {
-			description: "Distance out of range for this charge",
-			variant: "warning",
-			timeout: 5000,
-		});
-		throw new Error("Distance out of range for this charge");
+		throw new OutOfRangeError(distance);
 	}
 
 	const nextIndex = rows.findIndex((row) => row.rangeM >= distance);

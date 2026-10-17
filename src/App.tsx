@@ -1,9 +1,10 @@
-import { Button, Card, Chip, Form } from "@heroui/react";
+import { Button, Card, Chip, Form, toast } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useStore } from "zustand";
 
+import { NoChargeError, OutOfRangeError } from "./ballistics/errors";
 import { calculateFiringSolution } from "./ballistics/firing-solution";
 import {
 	type ResolveMortarFormData,
@@ -14,6 +15,28 @@ import { StepTwo } from "./components/ResolveMortarForm/StepTwo";
 import { ResultsHistoryCard } from "./components/ResultsHistoryCard";
 import { useCurrentResolutionStore } from "./stores/current-resolution.store";
 import { type HistoryItem, useHistoryStore } from "./stores/history.store";
+
+function notifyFiringError(error: unknown) {
+	if (error instanceof NoChargeError) {
+		toast("No mortar shell found", {
+			description: error.message,
+			variant: "warning",
+			timeout: 5000,
+		});
+		return;
+	}
+
+	if (error instanceof OutOfRangeError) {
+		toast("Out of charge range", {
+			description: error.message,
+			variant: "warning",
+			timeout: 5000,
+		});
+		return;
+	}
+
+	throw error;
+}
 
 export default function App() {
 	const currentResolution = useStore(useCurrentResolutionStore);
@@ -42,23 +65,27 @@ export default function App() {
 	});
 
 	const onSubmit = (data: ResolveMortarFormData) => {
-		const solution = calculateFiringSolution({
-			mortar: data.mortar,
-			origin: { grid: data.origin, altitude: String(data.originAltitude) },
-			target: { grid: data.target, altitude: String(data.targetAltitude) },
-			shellType: data.shellType,
-		});
+		try {
+			const solution = calculateFiringSolution({
+				mortar: data.mortar,
+				origin: { grid: data.origin, altitude: String(data.originAltitude) },
+				target: { grid: data.target, altitude: String(data.targetAltitude) },
+				shellType: data.shellType,
+			});
 
-		const resolutionData = {
-			mortar: data.mortar,
-			shell: data.shellType,
-			origin: { grid: data.origin, altitude: data.originAltitude },
-			target: { grid: data.target, altitude: data.targetAltitude },
-			solution,
-		};
+			const resolutionData = {
+				mortar: data.mortar,
+				shell: data.shellType,
+				origin: { grid: data.origin, altitude: data.originAltitude },
+				target: { grid: data.target, altitude: data.targetAltitude },
+				solution,
+			};
 
-		currentResolution.set(resolutionData);
-		resolvedHistory.add(resolutionData);
+			currentResolution.set(resolutionData);
+			resolvedHistory.add(resolutionData);
+		} catch (error) {
+			notifyFiringError(error);
+		}
 	};
 
 	const handleNextStep = () => {
