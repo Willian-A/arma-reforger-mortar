@@ -3,7 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { formatGrid } from "../../grid/format-grid";
 import type { ResolveMortarFormData } from "./resolve-mortar-form.schema";
 
-export const StepTwo = () => {
+export const PositionsStep = () => {
 	const { control } = useFormContext<ResolveMortarFormData>();
 
 	return (

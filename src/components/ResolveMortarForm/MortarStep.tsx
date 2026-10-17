@@ -2,7 +2,7 @@ import { FieldError, Label, ListBox, Select } from "@heroui/react";
 import { Controller, useFormContext } from "react-hook-form";
 import type { ResolveMortarFormData } from "./resolve-mortar-form.schema";
 
-export const StepOne = () => {
+export const MortarStep = () => {
 	const { control } = useFormContext<ResolveMortarFormData>();
 
 	return (
